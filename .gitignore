@@ -1,0 +1,5 @@
+# Ignore the project key file
+server/projectkey.json
+
+#ignore .env file
+.env
