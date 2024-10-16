@@ -1,10 +1,10 @@
 from fastapi import HTTPException
 from db import db
-from model.users import UserCreate, User
+from model.users import UserCreate
 from utils.security import get_password_hash, verify_password, create_access_token
 
 
-def register_user(user: UserCreate):
+async def register_user(user: UserCreate):
     existing_user = db.collection('users').where('email', '==', user.email).get()
     if len(existing_user) > 0:
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -22,7 +22,7 @@ def register_user(user: UserCreate):
     
     return {"userId": user_ref[1].id, "message": "User registered successfully"}
 
-def login_user(email: str, password: str):
+async def login_user(email: str, password: str):
     user_docs = db.collection('users').where('email', '==', email).get()
     if len(user_docs) == 0:
         raise HTTPException(status_code=401, detail="Invalid email or password")

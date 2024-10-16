@@ -19,6 +19,7 @@ async def root():
 async def protected_route(current_user: User = Depends(get_current_user)):
     return {"message": "This is a protected route"}
 
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
