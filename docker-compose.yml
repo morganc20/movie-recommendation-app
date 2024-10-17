@@ -1,21 +1,19 @@
-version: "3.8"
-
 services:
-  web:
-    build: .
+  fastapi:
+    build: ./server
     ports:
-      - "5000:5000"
+      - "8000:8000"
+    env_file:
+      - .env
     volumes:
-      - .:/code
+      - ./server:/app
     depends_on:
-      - db
-  api:
-    build: ./api
-    ports:
-      - "5001:5001"
-  db:
-    image: firestore
-    build:
-        context: api
-        dockerfile: Dockerfile.firestore
+      - firebase
+
+  firebase:
+    image: google/cloud-sdk:latest
     volumes:
+      - ./server/projectkey.json:/app/projectkey.json
+    command: >
+      bash -c "gcloud auth activate-service-account --key-file=/app/projectkey.json &&
+               tail -f /dev/null"
