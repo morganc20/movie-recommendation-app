@@ -6,14 +6,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./server:/app
-    depends_on:
-      - firebase
-
-  firebase:
-    image: google/cloud-sdk:latest
-    volumes:
-      - ./server/projectkey.json:/app/projectkey.json
-    command: >
-      bash -c "gcloud auth activate-service-account --key-file=/app/projectkey.json &&
-               tail -f /dev/null"
+      - ./server:/app 
