@@ -3,3 +3,7 @@ server/projectkey.json
 
 #ignore .env file
 .env
+
+# Ignore pycache directories
+__pycache__/
+**/__pycache__/
