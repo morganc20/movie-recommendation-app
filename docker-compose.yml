@@ -7,3 +7,15 @@ services:
       - .env
     volumes:
       - ./server:/app 
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" 
+    env_file:
+      - ./client/.env 
+    volumes:
+      - ./client:/app
+    command: npm run dev  # Start sever on container start
