@@ -11,7 +11,7 @@ load_dotenv()
 app = FastAPI()
 
 ## url for frontend
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5174")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 app.include_router(auth.router)
 app.include_router(lists.router)
