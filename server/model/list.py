@@ -1,11 +1,13 @@
 from pydantic import BaseModel
 from datetime import datetime
+from model.content import Image
 
 class ListCreate(BaseModel):
     name: str
     description: str
-class ListMovieCreate(BaseModel):
+
+class ListContentCreate(BaseModel):
+    listContentId: str
     listId: str
-    movieId: str
+    contentId: str
     addedAt: datetime
-    listMovieId: str
