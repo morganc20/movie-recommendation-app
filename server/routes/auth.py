@@ -1,9 +1,13 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from model.users import UserCreate, LoginRequest, TokenResponse
+<<<<<<< Updated upstream
 from services.auth_service import register_user, login_user
 from db import db
 from utils.security import verify_password, get_password_hash
+=======
+from services.auth_service import register_user, login_user, get_user_by_id
+>>>>>>> Stashed changes
 
 router = APIRouter()
 
@@ -85,6 +89,16 @@ async def verify_user(identifier: str, flag: str):
             raise HTTPException(status_code=404, detail="User not found")
 
         return ResponseModel(message="User exists", data={"userId": user_docs[0].id})
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+    
+@router.get("/get-user/{user_id}", response_model=ResponseModel)
+async def get_user(user_id: str):
+    try:
+        user = await get_user_by_id(user_id)
+        return ResponseModel(message="User found", data=user)
     except HTTPException as e:
         raise e
     except Exception as e:
