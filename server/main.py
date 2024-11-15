@@ -1,11 +1,15 @@
+"""
+This is the main file for the FastAPI server. 
+It contains the FastAPI app and the routes for the server.
+"""
 from fastapi import FastAPI
-from routes import auth, lists, movies
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends
+import os
+from dotenv import load_dotenv
+from routes import auth, lists, movies
 from model.users import User
 from utils.security import get_current_user
-from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-import os
 
 load_dotenv()
 app = FastAPI()
@@ -28,14 +32,20 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
+    """
+    Root route for the server.
+    """
     return {"message": "Hello World"}
 
 ## example of a protected route for future reference
 @app.get("/protected")
 async def protected_route(current_user: User = Depends(get_current_user)):
+    """
+    Example of a protected route.
+    """
     return {"message": "This is a protected route"}
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

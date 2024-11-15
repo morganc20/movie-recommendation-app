@@ -1,3 +1,6 @@
+"""
+This module contains the configuration settings for the FastAPI application.
+"""
 import os
 from dotenv import load_dotenv
 
@@ -14,7 +17,8 @@ LOCAL_CREDENTIALS_PATH = "projectkey.json"
 # Use environment variable if provided, otherwise fallback to Docker or local paths
 FIREBASE_CREDENTIALS_PATH = (
     os.getenv("FIREBASE_CREDENTIALS_PATH")
-    or (DOCKER_CREDENTIALS_PATH if os.path.exists(DOCKER_CREDENTIALS_PATH) else LOCAL_CREDENTIALS_PATH)
+    or (DOCKER_CREDENTIALS_PATH if os.path.exists(DOCKER_CREDENTIALS_PATH)
+        else LOCAL_CREDENTIALS_PATH)
 )
 
 # Raise an error if no valid credentials are found

@@ -1,7 +1,8 @@
 fastapi[all]
 firebase-admin
 pydantic
-uvicorn
+uvicorn[standard]
 python-dotenv
 pyjwt
 bcrypt
+google-cloud-firestore
