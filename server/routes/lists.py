@@ -7,7 +7,7 @@ from model.list import ListCreate
 from model.users import User
 from services.list_service import (
     create_list, get_list, add_content_to_list, remove_content_from_list,
-    toggle_private, give_rating_to_list, update_rating, get_all_lists_from_rating
+    toggle_private, give_rating_to_list, update_rating, get_all_lists_from_rating, get_average_rating
 )
 from utils.security import get_current_user
 
@@ -76,3 +76,10 @@ async def get_lists_by_rating(target_rating: int):
     Get all lists with a specific rating.
     """
     return get_all_lists_from_rating(target_rating)
+
+@router.get("/lists/average-rating/{list_id}")
+async def get_average_rating_for_list(list_id: str):
+    """
+    Get the average rating for a list.
+    """
+    return get_average_rating(list_id)

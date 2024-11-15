@@ -7,8 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends
 import os
 from dotenv import load_dotenv
-from routes import auth, lists, movies
+from routes import auth, lists
 from model.users import User
+from server.routes import content
 from utils.security import get_current_user
 
 load_dotenv()
@@ -19,7 +20,7 @@ FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 app.include_router(auth.router)
 app.include_router(lists.router)
-app.include_router(movies.router)
+app.include_router(content.router)
 
 # Add CORS middleware
 app.add_middleware(

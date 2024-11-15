@@ -149,3 +149,23 @@ def get_all_lists_from_rating(target_rating: int):
             lists.append(list_doc.to_dict())
 
     return lists
+
+
+def get_average_rating(list_id: str):
+    """
+    Get the average rating of a list
+    """
+    list_doc = db.collection("lists").document(list_id).get()
+    if not list_doc.exists:
+        raise HTTPException(status_code=404, detail="List not found")
+
+    rating_ids = list_doc.to_dict().get("ratings", [])
+    if not rating_ids:
+        return {"averageRating": 0}
+
+    total_score = 0
+    for rating_id in rating_ids:
+        rating_doc = db.collection("ratings").document(rating_id).get()
+        total_score += rating_doc.to_dict().get("score", 0)
+
+    return {"averageRating": total_score / len(rating_ids)}
