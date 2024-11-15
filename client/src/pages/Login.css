@@ -12,6 +12,7 @@ body {
 
   .login-title {
     color: black;
+    text-align: center;
   }
 
   .login-inner-box {
