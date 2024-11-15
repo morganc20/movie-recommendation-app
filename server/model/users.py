@@ -28,6 +28,8 @@ class TokenResponse(BaseModel):
     '''
     access_token: str
     token_type: str = "Bearer"
+    userId: str
+    username: str
 
 
 class LoginRequest(BaseModel):
