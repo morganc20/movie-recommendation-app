@@ -9,13 +9,13 @@ import os
 from dotenv import load_dotenv
 from routes import auth, lists
 from model.users import User
-from server.routes import content
+from routes import content
 from utils.security import get_current_user
 
 load_dotenv()
 app = FastAPI()
 
-## url for frontend
+# url for frontend
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 app.include_router(auth.router)
@@ -38,7 +38,9 @@ async def root():
     """
     return {"message": "Hello World"}
 
-## example of a protected route for future reference
+# example of a protected route for future reference
+
+
 @app.get("/protected")
 async def protected_route(current_user: User = Depends(get_current_user)):
     """

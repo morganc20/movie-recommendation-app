@@ -14,10 +14,12 @@ export const AuthProvider = ({ children }) => {
 
   // Persist user session using localStorage
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setUser({ token });
+    const token = localStorage.getItem("access_token");
+    const userId = localStorage.getItem("user_id");
+    const username = localStorage.getItem("username"); // Retrieve username
+    if (token && userId && username) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      setUser({ token, userId, username });
     }
     setLoading(false);
   }, []);
@@ -28,17 +30,18 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      const { access_token } = response.data;
-      localStorage.setItem('access_token', access_token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
-      setUser({ token: access_token });
+      const { access_token, userId, username } = response.data;
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("user_id", userId);
+      localStorage.setItem("username", username); // Store username
+      axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+      setUser({ token: access_token, userId: userId, username });
     } catch (err) {
-      setError(err.response?.data?.detail || 'Login failed');
+      setError(err.response?.data?.detail || "Login failed");
       console.error(err);
     }
   };
 
-  
   const signup = async (username, email, password) => {
     try {
       await axios.post(`${API_BASE_URL}/register`, {
@@ -48,20 +51,24 @@ export const AuthProvider = ({ children }) => {
       });
       await login(email, password); // Auto-login after signup
     } catch (err) {
-      setError(err.response?.data?.detail || 'Signup failed');
+      setError(err.response?.data?.detail || "Signup failed");
       console.error(err);
     }
   };
 
-  // remove the token from localStorage and axios headers
+  // Remove the token, userId, and username from localStorage and axios headers
   const logout = () => {
-    localStorage.removeItem('access_token');
-    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username"); // Clear username
+    delete axios.defaults.headers.common["Authorization"];
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, error, login, signup, logout }}>
+    <AuthContext.Provider
+      value={{ user, loading, error, login, signup, logout }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   );
