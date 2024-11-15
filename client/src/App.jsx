@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Home from './pages/Home.jsx';
+import Forum from './pages/Forum.jsx'
 
 
 const PrivateRoute = ({ children }) => {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forum" element={<Forum />} />
         </Routes>
       </Router>
     </AuthProvider>

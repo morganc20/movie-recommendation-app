@@ -1,0 +1,32 @@
+.sort-sidebar {
+    width: 220px;
+    margin-right: 20px;
+    background-color: #1a1a2e;
+    padding: 20px;
+    border-radius: 10px;
+    color: #F1DAC4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sort-sidebar h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #F1DAC4;
+  }
+  
+  .sort-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sort-sidebar li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .sort-sidebar li:hover {
+    color: #F1DAC4;
+  }
+  
+  

@@ -1,0 +1,19 @@
+.top-lists-carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 20px;
+  }
+  
+  .top-lists-carousel img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .top-lists-carousel img:hover {
+    transform: scale(1.05);
+  }
+  
+  

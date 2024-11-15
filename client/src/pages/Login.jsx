@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.svg'; // Import the SVG logo
-import './Login.css';
+import logo from '../assets/logo.svg'; 
+import '../Styles/Login.css';
 
 const Login = () => {
   const { login, error } = useAuth();
