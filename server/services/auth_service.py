@@ -53,3 +53,14 @@ async def login_user(email: str, password: str):
         "userId": user_doc.id,
         "username": user_data['username']
     }
+
+async def get_user_by_id(user_id: str):
+    """
+    Get a user by their ID.
+    """
+    user_doc = db.collection('users').document(user_id).get()
+    if not user_doc.exists:
+        raise HTTPException(status_code=404, detail="User not found")
+  
+    user_data = user_doc.to_dict()
+    return user_data
