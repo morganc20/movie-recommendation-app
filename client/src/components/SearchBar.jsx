@@ -19,7 +19,7 @@ const SearchBar = () => {
         <input
           type="text"
           className="search-input"
-          placeholder="What do you feel like watching? Comedy, Action, Inspirational..."
+          placeholder="What do you feel like watching?"
           value={searchQuery} 
           onChange={handleInputChange} 
           style={{ color: '#F1DAC4' }} 
