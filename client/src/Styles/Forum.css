@@ -40,3 +40,18 @@
     gap: 20px;
   }
   
+.filter-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+  }
+  

@@ -9,6 +9,7 @@ const SortSidebar = () => {
         <li>Categories</li>
         <li>Rating</li>
         <li>Directors</li>
+        {/* Add more filters as needed */}
       </ul>
     </aside>
   );

@@ -15,11 +15,13 @@
   }
   
   .thumbnail-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    object-fit: cover;
+    width: 130px;
+    height: 130px;
+    border-radius: 5px; 
+    border: 2px solid #F1DAC4; 
+    object-fit: cover; 
   }
+  
   
   .list-details {
     flex-grow: 1;

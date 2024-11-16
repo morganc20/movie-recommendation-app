@@ -2,32 +2,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 10px 20px;
   }
   
   .logo {
-    width: 150px;
+    height: 40px;
   }
   
-  nav {
+  .nav {
     display: flex;
-    gap: 20px;
+    gap: 20px; 
   }
   
-  nav a {
-    color: #F1DAC4;
+  .nav a {
+    color: #F1DAC4; 
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.3s;
+    font-size: 1rem;
   }
   
-  nav a:hover {
-    color: #F1DAC4;
+  .nav a:hover {
+    text-decoration: underline; 
   }
   
   .profile-icon {
-    font-size: 1.5rem;
-    color: #F1DAC4;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    cursor: pointer; 
   }
   
