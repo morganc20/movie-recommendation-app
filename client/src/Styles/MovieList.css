@@ -15,11 +15,11 @@
   }
   
   .thumbnail-image {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     border-radius: 5px; 
     border: 2px solid #F1DAC4; 
-    object-fit: cover; 
+    object-fit: contain; 
   }
   
   
@@ -30,22 +30,30 @@
   .list-user {
     font-size: 0.9rem;
     color: #b3a89e;
+    font-family: 'Georgia', serif;
+
   }
   
   .list-title {
     font-size: 1.3rem;
     margin: 5px 0;
+    font-family: 'Georgia', serif;
+
   }
   
   .list-genre {
     font-size: 0.9rem;
     color: #b3a89e;
+    font-family: 'Georgia', serif;
+
   }
   
   .list-summary {
     font-size: 0.9rem;
     color: #ccc;
     margin-top: 5px;
+    font-family: 'Georgia', serif;
+
   }
   
   .list-actions {

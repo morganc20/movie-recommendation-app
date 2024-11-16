@@ -17,6 +17,8 @@
     gap: 20px; 
     flex: 1; 
     transform: translateX(-10%); 
+    font-family: 'Georgia', serif;
+
   }
   
   .nav-links a {

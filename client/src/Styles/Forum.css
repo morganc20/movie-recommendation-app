@@ -10,6 +10,8 @@
     font-size: 3rem;
     color: #F1DAC4;
     margin-top: 20px;
+    font-family: 'Georgia', serif;
+
   }
   
   .forum-content {
@@ -23,6 +25,8 @@
     color: #F1DAC4;
     margin-bottom: 10px;
     text-align: center; 
+    font-family: 'Georgia', serif;
+
   }
   
   
