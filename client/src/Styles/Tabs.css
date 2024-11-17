@@ -1,0 +1,61 @@
+.tabs-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 15px; 
+    position: relative;
+    padding-bottom: 5px; 
+    
+  }
+  
+  .tabs::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #F1DAC4; 
+    width: 100%; 
+  }
+  
+  .tab {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #F1DAC4;
+    padding: 8px 8px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+    font-family: 'Georgia', serif;
+
+    
+  }
+  
+  .tab.active {
+    background-color: #333;
+    color: #F1DAC4;
+  }
+  
+  .filter-button {
+    position: absolute;
+    right: 0; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-icon {
+    width: 24px;
+    height: 24px;
+  }
+  

@@ -1,0 +1,35 @@
+.carousel-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    max-width: 300px; 
+    border-radius: 10px;
+    border: 2px solid #F1DAC4; 
+    object-fit: cover;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: #F1DAC4; 
+  }
+  
+  .slick-dots li button:before {
+    color: #F1DAC4; 
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #FFFFFF; 
+  }
+  
+  
+  

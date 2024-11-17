@@ -1,0 +1,103 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1b2f;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .login-title {
+    color: black;
+    text-align: center;
+  }
+
+  .login-inner-box {
+    background-color: #fff;
+    border-radius: 10px; 
+    width: 100%; 
+    padding: 1.5rem; 
+    box-sizing: border-box;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem; 
+    background-color: #1c1b2f;
+    overflow: hidden; 
+  }
+  
+  .login-box {
+    width: 100%;
+    max-width: 400px; 
+    padding: 2rem; 
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+  }
+  
+  .login-logo {
+    width: 20vw; 
+    height: 30vh;
+    height: auto;
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+  }
+  
+  .login-form label {
+    font-weight: bold;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem; 
+    box-sizing: border-box;
+  }
+  
+  .forgot-password {
+    font-size: 0.8rem;
+    text-align: right;
+    color: #1c1b2f;
+    text-decoration: none;
+  }
+  
+  .login-button {
+    background-color: #1c1b2f;
+    color: #fff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .signup-prompt {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #1c1b2f;
+  }
+  
+  .signup-prompt a {
+    color: #1c1b2f;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
