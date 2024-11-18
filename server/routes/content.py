@@ -6,7 +6,7 @@ from model.content import ContentCreate
 from services.content_service import (
     add_content, get_content_by_id, get_content_by_genre, get_content_by_title,
     get_content_by_director, get_content_by_release_year, get_content_by_type,
-    edit_content_by_id, remove_content_by_id
+    edit_content_by_id, remove_content_by_id, get_all_content, clear_all_content, get_recommendations
 )
 
 
@@ -19,6 +19,30 @@ async def create_content(content: ContentCreate):
     Add new content (movie, tv_show, or animation).
     """
     return add_content(content)
+
+
+@router.get("/content")
+async def get_allcontent():
+    """
+    Get all content.
+    """
+    return get_all_content()
+
+
+@router.get("/content/recommendations/{amount}")
+async def get_recommendations_route(amount: int):
+    """
+    Get content recommendations.
+    """
+    return get_recommendations(amount)
+
+
+@router.delete("/content")
+async def clear_allcontent():
+    """
+    Clear all content.
+    """
+    return clear_all_content()
 
 
 @router.get("/content/{content_id}")
