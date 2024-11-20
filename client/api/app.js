@@ -26,3 +26,28 @@ export const getRecommendedContent = async (amount = 10) => {
     return [];
   }
 };
+
+export const getReportsForReview = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/reports`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching reports for review:", error);
+    return [];
+  }
+};
+
+export const updateReportStatus = async (reportId, approved) => {
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/reports/${reportId}/status?approved=${approved}`,
+      {
+        approved,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating report status:", error);
+    return null;
+  }
+};

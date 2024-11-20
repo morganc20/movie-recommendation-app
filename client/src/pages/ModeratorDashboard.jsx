@@ -1,33 +1,32 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.svg';
-import ListItem from '../components/ReportPanel';
-import '../Styles/ModeratorDashboard.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.svg";
+import ListItem from "../components/ReportPanel";
+import "../Styles/ModeratorDashboard.css";
+import { getReportsForReview, updateReportStatus } from "../../api/app.js";
+import { format } from "date-fns";
 
 const ModeratorDashboard = () => {
   const navigate = useNavigate();
+  const [reports, setReports] = React.useState([]);
 
-  // Example report data
-  const reports = [
-    {
-      listName: 'Misleading titles',
-      listOwner: 'pauljames5980',
-      dateReported: '24th September, 2024',
-      reason: 'Spam list made.',
-    },
-    {
-      listName: 'Offensive content',
-      listOwner: 'janedoe123',
-      dateReported: '10th October, 2024',
-      reason: 'Contains inappropriate material.',
-    },
-    {
-      listName: 'Duplicate list',
-      listOwner: 'johnsmith456',
-      dateReported: '15th October, 2024',
-      reason: 'Same as another list.',
-    },
-  ];
+  React.useEffect(() => {
+    getReportsForReview().then((data) => {
+      setReports(data);
+    });
+  }, []);
+
+  // Function to handle report approval or deletion
+  const handleUpdateReportStatus = async (reportId, approved) => {
+    console.log(reportId, approved);
+    const response = await updateReportStatus(reportId, approved);
+    if (response) {
+      // Update the reports in state to reflect the changes
+      setReports((prevReports) =>
+        prevReports.filter((report) => report.reportId !== reportId)
+      );
+    }
+  };
 
   return (
     <div className="moderator-container">
@@ -43,8 +42,12 @@ const ModeratorDashboard = () => {
             key={index}
             listName={report.listName}
             listOwner={report.listOwner}
-            dateReported={report.dateReported}
-            reason={report.reason}
+            dateReported={format(new Date(report.reportDate), "MMMM dd, yyyy")}
+            reason={report.description}
+            onDelete={() =>
+              handleUpdateReportStatus(report.reportId, "rejected")
+            }
+            onKeep={() => handleUpdateReportStatus(report.reportId, "pending")}
           />
         ))}
       </section>

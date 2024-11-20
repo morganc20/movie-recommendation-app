@@ -7,11 +7,11 @@ from services.report_service import (
     create_report,
     get_report_by_id,
     get_reports_by_user_id,
-    get_reports_for_review,
     update_report_status,
     delete_report_by_id,
     get_reports_by_reported,
-    update_superadmin_report_status
+    update_superadmin_report_status,
+    get_reports_for_review_part2
 )
 
 router = APIRouter()
@@ -39,14 +39,6 @@ async def get_reports_by_user_id_route(user_id: str):
     Get all reports created by a specific user.
     """
     return get_reports_by_user_id(user_id)
-
-
-@router.get("/reports/review")
-async def get_reports_for_review_route():
-    """
-    Get all reports awaiting review. For moderators
-    """
-    return get_reports_for_review()
 
 
 @router.get("/reports/reported/{reported}")
@@ -79,3 +71,11 @@ async def delete_report_route(report_id: str):
     Delete a report by ID.
     """
     return delete_report_by_id(report_id)
+
+
+@router.get("/reports")
+async def get_reports_for_review_part2_route():
+    """
+    Get all reports awaiting review. For moderators
+    """
+    return get_reports_for_review_part2()

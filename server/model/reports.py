@@ -1,6 +1,7 @@
 '''
 This module contains the Pydantic models for the reports.
 '''
+from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
 
@@ -11,7 +12,20 @@ class ReportCreate(BaseModel):
     '''
     reportId: str  # Auto-generated
     userId: str  # User creating the report
-    reported: str  # ID of the user or entity being reported
+    reportedId: str  # ID of the user or entity being reported
     listId: Optional[str] = None  # Optional, if applicable
     description: str
     approved: str = "screened"  # Default to "screened"
+    timestamp: datetime = datetime.now()  # Auto-generated
+
+
+class ReportView(BaseModel):
+    '''
+    ReportView is the Pydantic model forthe result of a get 
+    '''
+    reportId: str  # Auto-generated
+    listName: str  # from listId
+    listOwner: str  # from reportedId
+    userId: str  # User creating the report
+    description: str  # Description of the report
+    reportDate: datetime  # Timestamp of the report from timestamp
