@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
-import ListItem from "../components/ReportPanel";
+import ListItem from "../components/ReportPanel.jsx";
 import "../Styles/ModeratorDashboard.css";
 import { getReportsForReview, updateReportStatus } from "../../api/app.js";
 import { format } from "date-fns";

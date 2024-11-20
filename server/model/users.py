@@ -33,6 +33,7 @@ class TokenResponse(BaseModel):
     token_type: str = "Bearer"
     userId: str
     username: str
+    role: str
 
 
 class LoginRequest(BaseModel):

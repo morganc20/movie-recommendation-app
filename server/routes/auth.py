@@ -33,7 +33,8 @@ async def login(login_request: LoginRequest):
             access_token=token['access_token'],
             token_type=token['token_type'],
             userId=token['userId'],
-            username=token['username']
+            username=token['username'],
+            role=token['role']
         )
     except HTTPException as e:
         raise e
