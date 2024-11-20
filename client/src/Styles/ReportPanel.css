@@ -1,0 +1,44 @@
+.list-item {
+    background-color: #1c1c1c;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    border: 1px solid #333;
+    width: 90%;
+}
+
+.list-item p {
+    margin: 5px 0;
+}
+
+.list-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.keep-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keep-btn:hover {
+    background-color: #218838;
+}
