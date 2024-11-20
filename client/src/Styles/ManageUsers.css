@@ -1,0 +1,269 @@
+ .manage-users {
+    padding: 24px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  
+  .user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  
+  .user-card {
+    background: #2a2a3c;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #3a3a4c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .user-card-content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-info {
+    flex: 1;
+  }
+  
+  .user-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: #fff;
+  }
+  
+  .user-details {
+    color: #a0aec0;
+  }
+  
+  .user-details p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .label {
+    color: #718096;
+    font-weight: 500;
+  }
+  
+  .role-badge {
+    background: #4c51bf;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .user-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .icon-button.edit {
+    color: #63b3ed;
+  }
+  
+  .icon-button.edit:hover {
+    background: rgba(99, 179, 237, 0.1);
+  }
+  
+  .icon-button.delete {
+    color: #fc8181;
+  }
+  
+  .icon-button.delete:hover {
+    background: rgba(252, 129, 129, 0.1);
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal {
+    background: #1f1e2e;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 20px; /* Added padding to ensure content doesn't touch the edges */
+    animation: slideUp 0.4s ease;
+  }
+  
+  .modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #3a3a4c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #2d3748, #1f1e2e);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: #718096;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+  }
+  
+  .close-button:hover {
+    color: #fff;
+  }
+  
+  .modal-content {
+    padding: 24px 0;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+    width: 100%; /* Ensure fields fit inside the grid */
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #cbd5e0;
+  }
+  
+  .form-group input {
+    width: 100%; /* Prevent overflow */
+    box-sizing: border-box; 
+    padding: 12px 16px;
+    border: 1px solid #4a5568;
+    background: #2d3748;
+    border-radius: 8px;
+    color: #fff;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #63b3ed;
+    background: #1f2737;
+  }
+  
+  .modal-footer {
+    padding: 20px 0;
+    border-top: 1px solid #3a3a4c;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+  }
+  
+  .button.primary {
+    background: linear-gradient(135deg, #4c51bf, #6a70ff);
+    color: white;
+    border: none;
+  }
+  
+  .button.primary:hover {
+    background: linear-gradient(135deg, #434190, #575fcf);
+  }
+  
+  .button.secondary {
+    background: transparent;
+    border: 1px solid #4a5568;
+    color: #cbd5e0;
+  }
+  
+  .button.secondary:hover {
+    background: rgba(74, 85, 104, 0.2);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      background: rgba(0, 0, 0, 0);
+    }
+    to {
+      background: rgba(0, 0, 0, 0.85);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .modal {
+      width: 95%;
+    }
+  
+    .modal-content {
+      padding: 16px 0;
+    }
+  }
+  
