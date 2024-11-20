@@ -38,6 +38,10 @@ function App() {
           <Route path="/animation" element={<Animation />} />
           <Route path="/my-lists" element={<MyLists />} />
           <Route path="/title" element={<Title />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/movie" element={<Movie />} />
+          <Route path="/television" element={<Television />} />
+          <Route path="/animation" element={<Animation />} />
         </Routes>
       </Router>
     </AuthProvider>
