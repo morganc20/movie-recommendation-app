@@ -10,7 +10,10 @@ class UserCreate(BaseModel):
     '''
     username: str
     email: EmailStr
+    firstName: str
+    lastName: str
     password: str
+    role: str = "user"
 
 
 class User(BaseModel):

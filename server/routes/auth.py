@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from model.users import UserCreate, LoginRequest, TokenResponse
-from services.auth_service import register_user, login_user, get_user_by_id
+from services.auth_service import register_user, login_user, get_user_by_id, get_user_role, promote_user_to_mod
 from db import db
 from utils.security import verify_password, get_password_hash
 
@@ -122,6 +122,36 @@ async def get_user(user_id: str):
     try:
         user = await get_user_by_id(user_id)
         return ResponseModel(message="User found", data=user)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.get("/get-user-role/{user_id}", response_model=ResponseModel)
+async def get_role(user_id: str):
+    """
+    Get the role of a user by their user ID.
+    """
+    try:
+        role = await get_user_role(user_id)
+        return ResponseModel(message="Role found", data={"role": role})
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.put("/promote-user/{user_id}", response_model=ResponseModel)
+async def promote_user(user_id: str):
+    """
+    Promote a user to moderator.
+    """
+    try:
+        result = await promote_user_to_mod(user_id)
+        return ResponseModel(message=result['message'])
     except HTTPException as e:
         raise e
     except Exception as e:

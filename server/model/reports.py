@@ -14,4 +14,4 @@ class ReportCreate(BaseModel):
     reported: str  # ID of the user or entity being reported
     listId: Optional[str] = None  # Optional, if applicable
     description: str
-    approved: bool = False  # Default to False until reviewed
+    approved: str = "screened"  # Default to "screened"
