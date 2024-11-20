@@ -25,10 +25,10 @@ const ReportPanel = ({
       </p>
       <div className="list-actions">
         <button className="delete-btn" onClick={onDelete}>
-          Reject Report
+          Close Report (Nothing was wrong)
         </button>
         <button className="keep-btn" onClick={onKeep}>
-          Approve Report
+          Pass to Admin
         </button>
       </div>
     </div>
