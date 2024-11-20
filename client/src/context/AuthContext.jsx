@@ -45,12 +45,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = async (username, email, password) => {
+  const signup = async (username, email, password, firstName, lastName) => {
     try {
       await axios.post(`${API_BASE_URL}/register`, {
         username,
         email,
         password,
+        firstName,
+        lastName,
       });
       await login(email, password); // Auto-login after signup
     } catch (err) {

@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.svg';
-import '../Styles/Signup.css';
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.svg";
+import "../Styles/Signup.css";
 
 const Signup = () => {
   const { signup, error } = useAuth();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
-    await signup(username, email, password);
-    navigate('/'); // Redirect to home after signup
+    await signup(username, email, password, firstName, lastName);
+    navigate("/"); // Redirect to home after signup
   };
 
   return (
@@ -29,7 +29,7 @@ const Signup = () => {
       <img src={Logo} alt="What to Watch Logo" className="logo" />
       <div className="formContainer">
         <h2 className="heading">Sign Up</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit} className="form">
           <input
             type="text"
@@ -79,7 +79,9 @@ const Signup = () => {
             required
             className="input"
           />
-          <button type="submit" className="button">Create Account</button>
+          <button type="submit" className="button">
+            Create Account
+          </button>
         </form>
       </div>
     </div>
