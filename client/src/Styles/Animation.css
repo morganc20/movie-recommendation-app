@@ -5,14 +5,14 @@
     padding: 20px;
   }
   
-  .forum-title {
+    .forum-title {
     text-align: center;
-    font-size: 80px; /* Quick Fix: Use this to increase the heading size*/
+    font-size: 80px;  /* Quick Fix: Use this to increase the heading size*/
     color: #F1DAC4;
     margin-top: 20px;
     font-family: 'Georgia', serif;
 
-  }
+    }
   
   .forum-content {
     width: 100%;

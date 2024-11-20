@@ -4,8 +4,11 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Home from './pages/Home.jsx';
-import Forum from './pages/Forum.jsx';
-//import Title from './pages/Title.jsx';
+import Forum from './pages/Forum.jsx'
+import Admin from './pages/Admin';
+import Movie from './pages/Movie.jsx';
+import Television from './pages/Television.jsx';
+import Animation from './pages/Animation.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Title from './pages/Title.jsx';
@@ -27,6 +30,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/title" element={<Title />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/movie" element={<Movie />} />
+          <Route path="/television" element={<Television />} />
+          <Route path="/animation" element={<Animation />} />
         </Routes>
       </Router>
     </AuthProvider>
