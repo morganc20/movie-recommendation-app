@@ -39,7 +39,56 @@ def get_reports_for_review_part2() -> List[dict]:
     for report_doc in report_docs:
         report_data = report_doc.to_dict()
 
-        # Fetch the list document if 'listId' is present
+        list_name = "N/A"
+        list_owner = "N/A"
+
+        if report_data.get('listId'):
+            list_doc = db.collection('lists').document(
+                report_data['listId']).get()
+            if list_doc.exists:
+                list_data = list_doc.to_dict()
+                list_name = list_data.get('name', 'N/A')
+                list_owner = list_data.get('userId', 'N/A')
+
+        if list_owner != "N/A" and list_owner.strip():
+            user_doc = db.collection('users').document(list_owner).get()
+            if user_doc.exists:
+                user_data = user_doc.to_dict()
+                list_owner = user_data.get('username', 'N/A')
+
+        # Create a ReportView instance to represent the report
+        report_id = report_doc.id
+        report_view = ReportView(
+            reportId=report_id,
+            listName=list_name,
+            listOwner=list_owner,
+            userId=report_data['userId'],
+            description=report_data['description'],
+            reportDate=report_data['timestamp']
+        )
+
+        # Add the report view to the list
+        reports_for_review.append(report_view)
+
+    return [report.dict() for report in reports_for_review]
+
+
+def get_reports_for_admin_review() -> List[dict]:
+    """
+    Get all reports that are not yet approved and return them as a list of dictionaries for admin review.
+    """
+    # Get all reports where 'approved' is 'screened'
+    report_docs = db.collection('reports').where(
+        'approved', '==', 'pending').get()
+
+    if not report_docs:
+        return []
+
+    reports_for_review = []
+
+    for report_doc in report_docs:
+        report_data = report_doc.to_dict()
+
         list_name = "N/A"
         list_owner = "N/A"
 
@@ -59,17 +108,17 @@ def get_reports_for_review_part2() -> List[dict]:
                 list_owner = user_data.get('username', 'N/A')
 
         # Create a ReportView instance to represent the report
-        report_id = report_doc.id  # This will get the Firestore document ID
+        report_id = report_doc.id
         report_view = ReportView(
             reportId=report_id,
             listName=list_name,
             listOwner=list_owner,
+            listId=report_data['listId'],
             userId=report_data['userId'],
             description=report_data['description'],
             reportDate=report_data['timestamp']
         )
 
-        # Add the report view to the list
         reports_for_review.append(report_view)
 
     return [report.dict() for report in reports_for_review]

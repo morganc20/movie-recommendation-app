@@ -26,6 +26,7 @@ class ReportView(BaseModel):
     reportId: str  # Auto-generated
     listName: str  # from listId
     listOwner: str  # from reportedId
+    listId: str  # from listId
     userId: str  # User creating the report
     description: str  # Description of the report
     reportDate: datetime  # Timestamp of the report from timestamp

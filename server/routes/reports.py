@@ -11,7 +11,8 @@ from services.report_service import (
     delete_report_by_id,
     get_reports_by_reported,
     update_superadmin_report_status,
-    get_reports_for_review_part2
+    get_reports_for_review_part2,
+    get_reports_for_admin_review
 )
 
 router = APIRouter()
@@ -79,3 +80,11 @@ async def get_reports_for_review_part2_route():
     Get all reports awaiting review. For moderators
     """
     return get_reports_for_review_part2()
+
+@router.get("/report")
+async def get_reports_for_admin_review_route_part():
+    """
+    Get all reports awaiting review. For superadmins , returns all reports 
+    with approved status as pending
+    """
+    return get_reports_for_admin_review()

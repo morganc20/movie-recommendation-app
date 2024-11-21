@@ -51,3 +51,40 @@ export const updateReportStatus = async (reportId, approved) => {
     return null;
   }
 };
+
+export const getAdminReportsForReview = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/report`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching admin reports for review:", error);
+    return [];
+  }
+};
+
+export const updateListPrivacy = async (listId, isPrivate) => {
+  try {
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      console.error("No access token found");
+      return null;
+    }
+
+    const response = await axios.patch(
+      `${BASE_URL}/lists/${listId}/privacy?is_private=${isPrivate}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error updating list privacy:", error);
+    return null;
+  }
+};
