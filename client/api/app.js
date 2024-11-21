@@ -88,3 +88,69 @@ export const updateListPrivacy = async (listId, isPrivate) => {
     return null;
   }
 };
+
+// Fetch all users
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/getAllUsers`);
+    if (
+      response.data &&
+      response.data.data &&
+      Array.isArray(response.data.data.users)
+    ) {
+      return response.data.data.users; // Extract the users array
+    }
+    return [];
+  } catch (error) {
+    console.error("Error fetching all users:", error);
+    return [];
+  }
+};
+
+export const updateUserDetails = async (userId, updatedData) => {
+  try {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      console.error("No access token found");
+      return null;
+    }
+
+    const response = await axios.patch(
+      `${BASE_URL}/update-user/${userId}`,
+      updatedData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating user with ID ${userId}:`, error);
+    return null;
+  }
+};
+
+export const deleteUser = async (userId) => {
+  try {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      console.error("No access token found");
+      return null;
+    }
+
+    const response = await axios.delete(`${BASE_URL}/delete/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting user with ID ${userId}:`, error);
+    throw error;
+  }
+};

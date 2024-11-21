@@ -25,6 +25,16 @@ class User(BaseModel):
     email: EmailStr
 
 
+class UserView(BaseModel):
+    '''
+    UserView is the Pydantic model for the user view.
+    '''
+    firstName: str
+    lastName: str
+    email: str
+    username: str
+
+
 class TokenResponse(BaseModel):
     '''
     TokenResponse is the Pydantic model for the token response.

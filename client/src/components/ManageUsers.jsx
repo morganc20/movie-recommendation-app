@@ -1,28 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { getAllUsers, updateUserDetails, deleteUser } from "../../api/app.js";
 import "../Styles/ManageUsers.css";
 
 const ManageUsers = () => {
-  const [users] = useState([
-    {
-      username: "johndoe",
-      email: "john@example.com",
-      firstName: "John",
-      lastName: "Doe",
-      role: "user",
-    },
-    {
-      username: "janesmith",
-      email: "jane@example.com",
-      firstName: "Jane",
-      lastName: "Smith",
-      role: "admin",
-    },
-  ]);
-
+  const [users, setUsers] = useState([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [editedUser, setEditedUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersFromServer = await getAllUsers();
+      console.log("Fetched users:", usersFromServer);
+      setUsers(usersFromServer || []);
+    };
+    fetchUsers();
+  }, []);
 
   const handleEdit = (user) => {
     setSelectedUser(user);
@@ -35,8 +29,55 @@ const ManageUsers = () => {
     setEditedUser({ ...editedUser, [name]: value });
   };
 
-  const handleSaveChanges = () => {
-    console.log("Saved user:", editedUser);
+  const handleDelete = async (userId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmed) return;
+
+    try {
+      await deleteUser(userId);
+      // Remove the deleted user from the state
+      setUsers((prevUsers) =>
+        prevUsers.filter((user) => user.userId !== userId)
+      );
+      console.log(`User with ID ${userId} deleted successfully.`);
+    } catch (error) {
+      console.error(`Error deleting user with ID ${userId}:`, error);
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    if (!editedUser || !selectedUser) return;
+
+    try {
+      const updatedData = {
+        firstName: editedUser.firstName,
+        lastName: editedUser.lastName,
+        email: editedUser.email,
+        username: editedUser.username,
+      };
+
+      const userId = selectedUser.userId; 
+      console.log("Updating user with userId:", userId);
+
+      const updatedUser = await updateUserDetails(userId, updatedData);
+
+      if (updatedUser) {
+        // Update the state to reflect the changes immediately
+        setUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.userId === userId ? { ...user, ...updatedData } : user
+          )
+        );
+        console.log("User updated successfully:", updatedUser);
+      } else {
+        console.error("Failed to update user");
+      }
+    } catch (error) {
+      console.error("Error saving changes:", error);
+    }
+
     setIsEditModalOpen(false);
   };
 
@@ -44,36 +85,47 @@ const ManageUsers = () => {
     <div className={`manage-users ${isEditModalOpen ? "blur-background" : ""}`}>
       <h2 className="page-title">Manage Users</h2>
       <div className="user-grid">
-        {users.map((user, index) => (
-          <div key={index} className="user-card">
-            <div className="user-card-content">
-              <div className="user-info">
-                <h3 className="user-name">
-                  {user.firstName} {user.lastName}
-                </h3>
-                <div className="user-details">
-                  <p>
-                    <span className="label">Username:</span> {user.username}
-                  </p>
-                  <p>
-                    <span className="label">Email:</span> {user.email}
-                  </p>
-                  <p>
-                    <span className="label">Role:</span> {user.role}
-                  </p>
+        {users.length === 0 ? (
+          <p>Loading users...</p>
+        ) : (
+          Array.isArray(users) &&
+          users.map((user) => (
+            <div key={user.userId} className="user-card">
+              <div className="user-card-content">
+                <div className="user-info">
+                  <h3 className="user-name">
+                    {user.firstName || "N/A"} {user.lastName || "N/A"}
+                  </h3>
+                  <div className="user-details">
+                    <p>
+                      <span className="label">Username:</span> {user.username}
+                    </p>
+                    <p>
+                      <span className="label">Email:</span> {user.email}
+                    </p>
+                    <p>
+                      <span className="label">Role:</span> {user.role}
+                    </p>
+                  </div>
+                </div>
+                <div className="user-actions">
+                  <button
+                    className="icon-button edit"
+                    onClick={() => handleEdit(user)}
+                  >
+                    <FaPencilAlt />
+                  </button>
+                  <button
+                    className="icon-button delete"
+                    onClick={() => handleDelete(user.userId)}
+                  >
+                    <FaTrashAlt />
+                  </button>
                 </div>
               </div>
-              <div className="user-actions">
-                <button className="icon-button edit" onClick={() => handleEdit(user)}>
-                  <FaPencilAlt />
-                </button>
-                <button className="icon-button delete">
-                  <FaTrashAlt />
-                </button>
-              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {isEditModalOpen && (
