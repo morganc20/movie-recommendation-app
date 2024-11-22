@@ -3,7 +3,7 @@ import '../styles/MovieTitle.css';
 import HeartIcon from '../assets/heart.svg'; 
 import MenuDotsIcon from '../assets/heart.svg'; 
 
-const MovieTitle = ({ studio, movieTitle, genre, movieCast, movies }) => {
+const MovieTitle = ({ studio, movieTitle, genre, movieCast }) => {
   const [favorites, setFavorites] = useState({}); 
 
   // Toggle favorite status

@@ -81,62 +81,55 @@ const Title = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Title</h1>
-        <SearchBar />
-        <div className="text-wrapper-6">Marvel</div>
+        <div>
+            {/* <h1 className="forum-title">Movie Title</h1> */}
+            <aside className="details-sidebar">
+                <h3>Marvel</h3>
+                <h1>The Avengers</h1>
+                <h2>Action Adventure</h2>
+                <ul>
+                    <li>Director: Joss Whedon</li>
+                    <li>Release Date: May 4th, 2012</li>
+                    <li>IMDB:8.1/10</li>
+                    <li>Rating:12A</li>
+                    {/* Add more filters as needed */}
+                    <button className="add-to-list-button">Add to My List</button>
+                </ul>
+            </aside> 
+            <TopListsCarousel />
 
-        <div className="overlap">
-          <div className="overlap-group">
-            <div className="overlap-2">
-              <div className="text-wrapper-7">The Avengers</div>
-
-              <div className="text-wrapper-8">Action Adventure</div>
+            
+            <div>
+                <h2>Synopsys</h2>
+                <p className="synopsis-text">
+                Nam eu nibh est. Cras sit amet orci leo. Fusce interdum eleifend
+          pretium. Sed porttitor leo ut tristique molestie.
+          <br />
+          Aenean a magna pharetra, varius elit et, sodales mauris. Pellentesque
+          malesuada, nibh commodo mollis aliquam, sapien ipsum
+          <br />
+          faucibus enim, vitae cursus arcu sapien ut quam. Donec eu ligula mi.
+          In vel nisi tempus nulla sagittis interdum et vel nibh.
+          <br />
+          Curabitur ullamcorper est est, non iaculis erat blandit quis. Donec
+          pulvinar egestas nulla vitae malesuada. Integer commodo <br />
+          rhoncus dui, non malesuada lectus porttitor a. Vivamus urna leo,
+          sollicitudin quis imperdiet non, sollicitudin sit amet ligula. <br />
+          Fusce dui lectus, sagittis ut pulvinar et, dapibus sed eros. Donec ut
+          velit fermentum, pulvinar magna id, fringilla neque.
+          <br />
+          Vestibulum vestibulum blandit vestibulum. Mauris vestibulum, dolor non
+          eleifend efficitur, massa enim posuere tellus,
+          <br />
+          quis porttitor tortor quam ac lacus.
+                </p>
             </div>
 
-            <div className="play-svgrepo-com-wrapper">
-              <img
-                className="play-svgrepo-com"
-                alt="Play svgrepo com"
-                src={playSvgrepoCom1}
-              />
-            </div>
-          </div>
-
-          <p className="director-joss-whedon">
-            <span className="span">Director:</span>
-
-            <span className="text-wrapper-9"> Joss Whedon</span>
-          </p>
-
-          <p className="release-date-may">
-            <span className="span">Release Date:</span>
-
-            <span className="text-wrapper-9"> May 4th 2012</span>
-          </p>
-
-          <p className="imdb">
-            <span className="span">IMDb: </span>
-
-            <span className="text-wrapper-9">8.1/10</span>
-          </p>
-
-          <p className="rating">
-            <span className="span">Rating: </span>
-
-            <span className="text-wrapper-9">12A</span>
-          </p>
-
-          <div className="div-wrapper">
-            <div className="text-wrapper-10">Add to My List</div>
-          </div>
         </div>
-
-
-        <TopListsCarousel />
-
-        <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
+       
+        
         <div className="main-content">
-          <SortSidebar />
+            
           <div className="movie-lists">
             <MovieList
               listTitle="Best Boat Movies"
@@ -153,7 +146,7 @@ const Title = () => {
               movies={weeklyMovies}
             />
           </div>
-          <div className="movie-lists">
+          {/* <div className="movie-lists">
             <MovieTitle
               studio = "Marvel"
               movieTitle="The Avengers"
@@ -165,8 +158,8 @@ const Title = () => {
               movieTitle="Interstellar"
               genre="Thriller Sci-Fi"
               castSummary="Matthew McConaughey, Michael Caine, Anne Hathaway"
-            />
-          </div>
+            /> 
+          </div>*/}
         </div>
       </div>
     </div>
