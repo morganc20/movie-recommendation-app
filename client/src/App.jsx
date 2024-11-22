@@ -13,6 +13,7 @@ import MyLists from './pages/MyLists.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Title from './pages/Title.jsx';
+import MyLists from './pages/MyLists.jsx';
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/animation" element={<Animation />} />
           <Route path="/my-lists" element={<MyLists />} />
           <Route path="/title" element={<Title />} />
+          <Route path="/my-lists" element={<MyLists />} />
         </Routes>
       </Router>
     </AuthProvider>
