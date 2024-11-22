@@ -122,6 +122,7 @@ const Title = () => {
           eleifend efficitur, massa enim posuere tellus,
           <br />
           quis porttitor tortor quam ac lacus.
+          
                 </p>
             </div>
 
@@ -129,24 +130,8 @@ const Title = () => {
        
         
         <div className="main-content">
-            
-          {/* <div className="movie-lists">
-            <MovieList
-              listTitle="Best Boat Movies"
-              user="user39450"
-              genre="Action Adventure"
-              listSummary="Jaws, Captain Phillips, Adrift..."
-              movies={recommendedMovies}
-            />
-            <MovieList
-              listTitle="Weekly Highlights"
-              user="user85732"
-              genre="Thriller"
-              listSummary="Thriller Night..."
-              movies={weeklyMovies}
-            />
-          </div> */}
           <div className="movie-lists">
+            <h2>More Movies Like This</h2>
             <MovieTitle
               studio = "Marvel"
               movieTitle="The Avengers"
@@ -162,6 +147,24 @@ const Title = () => {
               movies={recommendedMovies}
             /> 
           </div>
+        </div>
+        
+        <div class="list-recommendations">
+            <h2>List Featuring This Movie</h2>
+            <MovieList
+              listTitle="Best Boat Movies"
+              user="user39450"
+              genre="Action Adventure"
+              listSummary="Jaws, Captain Phillips, Adrift..."
+              movies={recommendedMovies}
+            />
+            <MovieList
+              listTitle="Weekly Highlights"
+              user="user85732"
+              genre="Thriller"
+              listSummary="Thriller Night..."
+              movies={weeklyMovies}
+            />
         </div>
       </div>
     </div>

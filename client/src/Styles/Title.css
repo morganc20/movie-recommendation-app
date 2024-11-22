@@ -89,7 +89,8 @@
   }
   
 .filter-button {
-    background: none;
+    color:#0d0d24;
+    background: #f1dac4;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -102,4 +103,5 @@
     height: 24px;
     margin-left: 10px;
   }
+
   
