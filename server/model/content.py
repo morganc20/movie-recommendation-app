@@ -17,3 +17,4 @@ class ContentCreate(BaseModel):
     genre: str
     type: str  # "movie" or "tv_show"
     synopsis: str
+    avgRating: float
