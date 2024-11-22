@@ -3,16 +3,16 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import TopListsCarousel from '../components/TopListsCarousel';
 import SortSidebar from '../components/SortSidebar';
-import MovieList from '../components/MovieList';
+import TitleDisplay from '../components/TitleDisplay';
 import Tabs from '../components/Tabs';
-import '../styles/Forum.css';
+import '../styles/MyLists.css';
 
 import JawsThumbnail from '../assets/test.jpg';
 import CaptainPhillipsThumbnail from '../assets/test.jpg';
 import AdriftThumbnail from '../assets/test.jpg';
 import ThrillerNightThumbnail from '../assets/test.jpg';
 
-const Forum = () => {
+const MyLists = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");
 
   const handleCategorySelect = (category) => {
@@ -26,19 +26,25 @@ const Forum = () => {
       id: 1,
       title: "Jaws",
       genre: "Thriller",
-      thumbnail: JawsThumbnail,
+      director: "Quentin Tarantino",
+      cast: "abc, def, xyz",
+      movieImage: JawsThumbnail,
     },
     {
       id: 2,
       title: "Captain Phillips",
-      genre: "Adventure",
-      thumbnail: CaptainPhillipsThumbnail,
+      genre: "Thriller",
+      director: "Quentin Tarantino",
+      cast: "abc, def, xyz",
+      movieImage: CaptainPhillipsThumbnail,
     },
     {
-      id: 3,
-      title: "Adrift",
-      genre: "Drama",
-      thumbnail: AdriftThumbnail,
+        id: 3,
+        title: "Adrift",
+        genre: "Drama",
+        director: "Quentin Tarantino",
+        cast: "abc, def, xyz",
+        movieImage: AdriftThumbnail,
     },
   ];
 
@@ -55,26 +61,26 @@ const Forum = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Forum</h1>
-        <SearchBar />
-          <TopListsCarousel title="Top Lists"/>
+        <h1 className="forum-title">My Lists</h1>
+        <SearchBar placeholder='Search your created and saved lists'/>
+          <TopListsCarousel title="Browse Your Lists"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />
           <div className="movie-lists">
-            <MovieList
-              listTitle="Best Boat Movies"
-              user="user39450"
+            <TitleDisplay
+              title="Jaws"
+              director="Steven Spielberg"
               genre="Action Adventure"
-              listSummary="Jaws, Captain Phillips, Adrift..."
-              movies={recommendedMovies}
+              cast="Richard Dreyfuss, Robert Shaw,..."
+              movieImage={recommendedMovies.find((movie) => movie.title === "Jaws")?.movieImage}  // Quick Work: You can call your API endpoint here to retrieve an image and it should be handled
             />
-            <MovieList
-              listTitle="Weekly Highlights"
-              user="user85732"
-              genre="Thriller"
-              listSummary="Thriller Night..."
-              movies={weeklyMovies}
+            <TitleDisplay
+              title="Jaws"
+              director="Steven Spielberg"
+              genre="Action Adventure"
+              cast="Richard Dreyfuss, Robert Shaw,..."
+              movieImage={recommendedMovies.find((movie) => movie.title === "Jaws")?.movieImage}
             />
           </div>
         </div>
@@ -83,8 +89,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
-
-
-
-
+export default MyLists;

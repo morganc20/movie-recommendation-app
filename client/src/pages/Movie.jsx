@@ -63,7 +63,7 @@ const Movie = () => {
       <div className="forum-content">
         <h1 className="forum-title">Movies</h1>
         <SearchBar />
-          <TopListsCarousel />
+          <TopListsCarousel title="Top Movie Titles"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />

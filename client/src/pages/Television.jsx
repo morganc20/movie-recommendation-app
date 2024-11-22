@@ -63,7 +63,7 @@ const Television = () => {
       <div className="forum-content">
         <h1 className="forum-title">Television</h1>
         <SearchBar />
-          <TopListsCarousel />
+          <TopListsCarousel title="Top Television Titles"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />
