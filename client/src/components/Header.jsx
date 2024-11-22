@@ -8,7 +8,7 @@ const Header = () => {
     <div className="header-container">
   <img src={Logo} alt="Logo" className="logo" />
   <nav className="nav-links">
-    <a href="/movies">Movies</a>
+    <a href="/movie">Movies</a>
     <a href="/television">Television</a>
     <a href="/animation">Animation</a>
     <a href="/forum">Forum</a>

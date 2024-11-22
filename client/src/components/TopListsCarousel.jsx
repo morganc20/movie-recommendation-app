@@ -10,7 +10,7 @@ import LOTRThumbnail from "../assets/test.jpg";
 //npm install --save-dev css-loader style-loader
 //
 
-const TopListsCarousel = () => {
+const TopListsCarousel = ({ title }) => {
   const settings = {
     dots: true, 
     infinite: true, 
@@ -38,7 +38,7 @@ const TopListsCarousel = () => {
 
   return (
     <div className="carousel-container">
-      <h2 className="section-title">Top Lists</h2>
+      {title && <h2 className="section-title">{title}</h2>}
       <Slider {...settings}>
         {movies.map((movie) => (
           <div key={movie.id} className="carousel-slide">

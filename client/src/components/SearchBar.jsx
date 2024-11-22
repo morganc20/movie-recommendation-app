@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/SearchBar.css';
 import SearchIcon from '../assets/search.svg'; 
 
-const SearchBar = () => {
+const SearchBar = ({ placeholder="What do you feel like watching?" }) => {
   const [searchQuery, setSearchQuery] = useState(''); 
 
   const handleInputChange = (event) => {
@@ -19,7 +19,7 @@ const SearchBar = () => {
         <input
           type="text"
           className="search-input"
-          placeholder="What do you feel like watching?"
+          placeholder={placeholder}
           value={searchQuery} 
           onChange={handleInputChange} 
           style={{ color: '#F1DAC4' }} 
