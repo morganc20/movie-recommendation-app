@@ -4,9 +4,11 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Home from './pages/Home.jsx';
-import Forum from './pages/Forum.jsx'
+import Forum from './pages/Forum.jsx';
+//import Title from './pages/Title.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Title from './pages/Title.jsx';
 
 
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/title" element={<Title />} />
         </Routes>
       </Router>
     </AuthProvider>
