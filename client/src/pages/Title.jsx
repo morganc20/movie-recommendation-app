@@ -130,7 +130,7 @@ const Title = () => {
         
         <div className="main-content">
             
-          <div className="movie-lists">
+          {/* <div className="movie-lists">
             <MovieList
               listTitle="Best Boat Movies"
               user="user39450"
@@ -145,21 +145,23 @@ const Title = () => {
               listSummary="Thriller Night..."
               movies={weeklyMovies}
             />
-          </div>
-          {/* <div className="movie-lists">
+          </div> */}
+          <div className="movie-lists">
             <MovieTitle
               studio = "Marvel"
               movieTitle="The Avengers"
               genre="Action Adventure"
               castSummary="Robert Downey Jr, Chris Hemsworth, Chris Evans, Scarlett Johannson"
+              movies={weeklyMovies}
             />
             <MovieTitle
               studio = "Warner Brothers"
               movieTitle="Interstellar"
               genre="Thriller Sci-Fi"
               castSummary="Matthew McConaughey, Michael Caine, Anne Hathaway"
+              movies={recommendedMovies}
             /> 
-          </div>*/}
+          </div>
         </div>
       </div>
     </div>
