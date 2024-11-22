@@ -9,6 +9,7 @@ import Admin from './pages/Admin';
 import Movie from './pages/Movie.jsx';
 import Television from './pages/Television.jsx';
 import Animation from './pages/Animation.jsx';
+import MyLists from './pages/MyLists.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Title from './pages/Title.jsx';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/movie" element={<Movie />} />
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
+          <Route path="/my-lists" element={<MyLists />} />
         </Routes>
       </Router>
     </AuthProvider>

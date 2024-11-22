@@ -63,7 +63,7 @@ const Animation = () => {
       <div className="forum-content">
         <h1 className="forum-title">Animation</h1>
         <SearchBar />
-          <TopListsCarousel />
+          <TopListsCarousel title="Top Animation Titles"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />

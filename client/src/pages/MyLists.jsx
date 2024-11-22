@@ -5,14 +5,14 @@ import TopListsCarousel from '../components/TopListsCarousel';
 import SortSidebar from '../components/SortSidebar';
 import TitleDisplay from '../components/TitleDisplay';
 import Tabs from '../components/Tabs';
-import '../styles/Movie.css';
+import '../styles/MyLists.css';
 
 import JawsThumbnail from '../assets/test.jpg';
 import CaptainPhillipsThumbnail from '../assets/test.jpg';
 import AdriftThumbnail from '../assets/test.jpg';
 import ThrillerNightThumbnail from '../assets/test.jpg';
 
-const Movie = () => {
+const MyLists = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");
 
   const handleCategorySelect = (category) => {
@@ -61,9 +61,9 @@ const Movie = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Movies</h1>
-        <SearchBar />
-          <TopListsCarousel title="Top Movie Titles"/>
+        <h1 className="forum-title">My Lists</h1>
+        <SearchBar placeholder='Search your created and saved lists'/>
+          <TopListsCarousel title="Browse Your Lists"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />
@@ -89,4 +89,4 @@ const Movie = () => {
   );
 };
 
-export default Movie;
+export default MyLists;
