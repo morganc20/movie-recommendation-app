@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import TopListsCarousel from "../components/TopListsCarousel";
+import ListDropdown from "../components/ListDropdown"
 import SortSidebar from "../components/SortSidebar";
 import MovieList from "../components/MovieList";
 import MovieTitle from "../components/MovieTitle";
@@ -93,9 +94,29 @@ const Title = () => {
                     <li>IMDB:8.1/10</li>
                     <li>Rating:12A</li>
                     {/* Add more filters as needed */}
-                    <button className="add-to-list-button">Add to My List</button>
+                    <ListDropdown
+                        buttonLabel="Add to List"
+                        options={[
+                            { label: 'Add to Space Wizards', href: '#a' },
+                            { label: 'Add to Nostalgia', href: '#b' },
+                            {label: 'Add to New List', href: '#c'}
+                        ]}
+                        buttonStyle={{ backgroundColor: '#f1dac4', color: 'black' }}
+                        menuStyle={{ backgroundColor: '#f1dac4' }}
+                    />
+                    {/* <button className="add-to-list-button">Add to My List</button> */}
                 </ul>
             </aside> 
+            
+            {/* <ListDropdown
+                buttonLabel="Menu 2"
+                options={[
+                    { label: 'Option 1', href: '#1' },
+                    { label: 'Option 2', href: '#2', onClick: () => alert('Clicked!') },
+                ]}
+                buttonStyle={{ backgroundColor: 'blue', color: 'white' }}
+                menuStyle={{ backgroundColor: 'lightblue' }}
+            /> */}
             <TopListsCarousel />
 
             
