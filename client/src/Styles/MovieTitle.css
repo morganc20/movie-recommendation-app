@@ -62,7 +62,8 @@
     gap: 10px;
   }
   
-  .favorite-button, .menu-button {
+  .favorite-button,
+  .menu-button {
     background: none;
     border: none;
     cursor: pointer;
