@@ -73,6 +73,7 @@
     justify-content: center; 
     flex-wrap: wrap; 
     gap: 10px; 
+    left: 0;
   }
 
   .tab {
@@ -89,6 +90,7 @@
 @media (max-width: 480px) {
   .tabs {
     gap: 8px; 
+    left: 20;
   }
 
   .tab {
