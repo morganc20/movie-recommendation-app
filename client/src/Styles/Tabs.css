@@ -1,61 +1,105 @@
 .tabs-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .tabs {
-    display: flex;
-    gap: 15px; 
-    position: relative;
-    padding-bottom: 5px; 
-    
-  }
-  
-  .tabs::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background-color: #F1DAC4; 
-    width: 100%; 
-  }
-  
-  .tab {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    color: #F1DAC4;
-    padding: 8px 8px;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: background-color 0.2s ease;
-    font-family: 'Georgia', serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  position: relative;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
 
-    
+.tabs {
+  display: flex;
+  gap: 15px;
+  position: relative;
+  padding-bottom: 5px;
+  flex-wrap: wrap; 
+  left: 20vw;
+}
+
+.tabs::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #F1DAC4;
+  width: 100%;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #F1DAC4;
+  padding: 8px 8px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.2s ease;
+  font-family: 'Georgia', serif;
+}
+
+.tab.active {
+  background-color: #333;
+  color: #F1DAC4;
+}
+
+.filter-button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; 
+}
+
+.filter-icon {
+  width: 24px;
+  height: 24px;
+}
+
+
+@media (max-width: 768px) {
+  .tabs-wrapper {
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-bottom: 15px; 
   }
-  
-  .tab.active {
-    background-color: #333;
-    color: #F1DAC4;
+
+  .tabs {
+    width: 100%; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
   }
-  
+
+  .tab {
+    font-size: 0.9rem; 
+    padding: 6px 8px; 
+  }
+
   .filter-button {
-    position: absolute;
-    right: 0; 
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    margin-top: 10px; 
+    align-self: flex-end; 
   }
-  
-  .filter-icon {
-    width: 24px;
-    height: 24px;
+}
+
+@media (max-width: 480px) {
+  .tabs {
+    gap: 8px; 
   }
+
+  .tab {
+    font-size: 0.8rem; 
+    padding: 5px 6px;
+  }
+
+  .filter-button {
+    align-self: center;
+    margin-top: 15px;
+  }
+}
+
   
