@@ -61,21 +61,17 @@
     margin-left: 10px;
   }
 
-<<<<<<< HEAD
   .main-logo {
     display: block;
-    margin: 10px 17vw; 
-    width: 40vw; 
-    height: 40vh; 
+    margin: 10px auto;
+    width: 40vw;
+    height: 40vh;
   }
-
   
   @media (max-width: 768px) {
     .main-logo {
-      width: 60vw; 
+      width: 60vw;
       height: auto; 
-      margin: 10px 17vw; 
-
     }
   }
   
@@ -83,16 +79,6 @@
     .main-logo {
       width: 70vw; 
       height: auto;
-      margin: 10px 17vw; 
-
     }
   }
   
-  
-=======
-  main-logo{
-    width: 20vw;
-    height: 30vh; 
-    margin-right: 60vw; 
-  }
->>>>>>> 3141e7ca680b42a305aedf4c804a0481a0b0976e
