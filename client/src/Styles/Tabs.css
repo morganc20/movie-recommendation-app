@@ -1,61 +1,107 @@
 .tabs-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .tabs {
-    display: flex;
-    gap: 15px; 
-    position: relative;
-    padding-bottom: 5px; 
-    
-  }
-  
-  .tabs::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background-color: #F1DAC4; 
-    width: 100%; 
-  }
-  
-  .tab {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    color: #F1DAC4;
-    padding: 8px 8px;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: background-color 0.2s ease;
-    font-family: 'Georgia', serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure filter button stays aligned */
+  position: relative;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow tabs and filter button to wrap on smaller screens */
+}
 
-    
+.tabs {
+  display: flex;
+  gap: 15px;
+  position: relative;
+  padding-bottom: 5px;
+  flex-wrap: wrap; /* Allow tabs to wrap when space is limited */
+}
+
+.tabs::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #F1DAC4;
+  width: 100%;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #F1DAC4;
+  padding: 8px 8px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.2s ease;
+  font-family: 'Georgia', serif;
+}
+
+.tab.active {
+  background-color: #333;
+  color: #F1DAC4;
+}
+
+.filter-button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* Add some spacing when tabs wrap */
+}
+
+.filter-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px (tablet and mobile view) */
+@media (max-width: 768px) {
+  .tabs-wrapper {
+    flex-direction: column; /* Stack tabs and filter button */
+    align-items: flex-start; /* Align items to the left */
+    margin-bottom: 15px; /* Adjust spacing */
   }
-  
-  .tab.active {
-    background-color: #333;
-    color: #F1DAC4;
+
+  .tabs {
+    width: 100%; /* Make tabs take full width */
+    justify-content: center; /* Center tabs */
+    flex-wrap: wrap; /* Wrap tabs into multiple rows if needed */
+    gap: 10px; /* Reduce spacing between tabs */
   }
-  
+
+  .tab {
+    font-size: 0.9rem; /* Slightly smaller text for tabs */
+    padding: 6px 8px; /* Adjust padding for smaller screens */
+  }
+
   .filter-button {
-    position: absolute;
-    right: 0; 
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    margin-top: 10px; /* Ensure spacing from tabs */
+    align-self: flex-end; /* Position the filter button to the right */
   }
-  
-  .filter-icon {
-    width: 24px;
-    height: 24px;
+}
+
+/* For screens smaller than 480px (mobile view) */
+@media (max-width: 480px) {
+  .tabs {
+    gap: 8px; /* Further reduce spacing between tabs */
   }
+
+  .tab {
+    font-size: 0.8rem; /* Smaller text size for very small screens */
+    padding: 5px 6px; /* Reduce padding */
+  }
+
+  .filter-button {
+    align-self: center; /* Center filter button for better alignment */
+    margin-top: 15px;
+  }
+}
+
   
