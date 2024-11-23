@@ -11,13 +11,6 @@
     color: #F1DAC4;
     margin-top: 20px;
     font-family: 'Georgia', serif;
-
-.forum-title {
-  text-align: center;
-  font-size: 50vw; /* Quick Fix: Use this to increase the heading size*/
-  color: #F1DAC4;
-  margin-top: 20px;
-  font-family: 'Georgia', serif;
 }
 
 .forum-content {
