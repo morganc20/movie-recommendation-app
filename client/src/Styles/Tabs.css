@@ -1,10 +1,10 @@
 .tabs-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensure filter button stays aligned */
+  justify-content: space-between; 
   position: relative;
   margin-bottom: 20px;
-  flex-wrap: wrap; /* Allow tabs and filter button to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
 .tabs {
@@ -12,7 +12,8 @@
   gap: 15px;
   position: relative;
   padding-bottom: 5px;
-  flex-wrap: wrap; /* Allow tabs to wrap when space is limited */
+  flex-wrap: wrap; 
+  left: 20vw;
 }
 
 .tabs::after {
@@ -51,7 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px; /* Add some spacing when tabs wrap */
+  margin-top: 10px; 
 }
 
 .filter-icon {
@@ -59,47 +60,44 @@
   height: 24px;
 }
 
-/* Media Queries for Responsiveness */
 
-/* For screens smaller than 768px (tablet and mobile view) */
 @media (max-width: 768px) {
   .tabs-wrapper {
-    flex-direction: column; /* Stack tabs and filter button */
-    align-items: flex-start; /* Align items to the left */
-    margin-bottom: 15px; /* Adjust spacing */
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-bottom: 15px; 
   }
 
   .tabs {
-    width: 100%; /* Make tabs take full width */
-    justify-content: center; /* Center tabs */
-    flex-wrap: wrap; /* Wrap tabs into multiple rows if needed */
-    gap: 10px; /* Reduce spacing between tabs */
+    width: 100%; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
   }
 
   .tab {
-    font-size: 0.9rem; /* Slightly smaller text for tabs */
-    padding: 6px 8px; /* Adjust padding for smaller screens */
+    font-size: 0.9rem; 
+    padding: 6px 8px; 
   }
 
   .filter-button {
-    margin-top: 10px; /* Ensure spacing from tabs */
-    align-self: flex-end; /* Position the filter button to the right */
+    margin-top: 10px; 
+    align-self: flex-end; 
   }
 }
 
-/* For screens smaller than 480px (mobile view) */
 @media (max-width: 480px) {
   .tabs {
-    gap: 8px; /* Further reduce spacing between tabs */
+    gap: 8px; 
   }
 
   .tab {
-    font-size: 0.8rem; /* Smaller text size for very small screens */
-    padding: 5px 6px; /* Reduce padding */
+    font-size: 0.8rem; 
+    padding: 5px 6px;
   }
 
   .filter-button {
-    align-self: center; /* Center filter button for better alignment */
+    align-self: center;
     margin-top: 15px;
   }
 }
