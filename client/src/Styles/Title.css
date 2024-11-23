@@ -1,37 +1,43 @@
-.forum {
+.m-title {
     background-color: #0d0d24;
     color: #F1DAC4;
     min-height: 100vh;
     padding: 20px;
-  }
-  
-  .forum-title {
+}
+
+.m-heading-title {
     color: #F1DAC4;
     font-family: Manuale;
     font-size: 3rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-align: left;
+    text-align: center;
     margin-top: 20px;
-  }
-  
-  body {
-    font-family: Manuale;
-  }
-  
-  .forum-content {
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-  }
+}
 
-  .details-sidebar h1 {
+.details-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items:flex-start;
+}
+
+
+.details-sidebar h1 {
     color: #F1DAC4;
     font-family: Manuale;
-  }
+}
 
-  .details-sidebar {
+.details-sidebar {
     width: 220px;
     margin-right: 20px;
     background-color: #1a1a2e;
@@ -39,65 +45,67 @@
     border-radius: 10px;
     color: #F1DAC4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .details-sidebar h3 {
+}
+
+.details-sidebar h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
     color: #F1DAC4;
     font-family: 'Georgia', serif;
-  }
-  
-  .details-sidebar ul {
+}
+
+.details-sidebar ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .details-sidebar li {
+}
+
+.details-sidebar li {
     margin-bottom: 10px;
     cursor: pointer;
     transition: color 0.3s;
     font-family: 'Georgia', serif;
-  }
-  
-  .details-sidebar li:hover {
+}
+
+.details-sidebar li:hover {
     color: #F1DAC4;
-  }
-  
-  .section-title {
+}
+
+.section-title {
     font-size: 1.5rem;
+    background-color: #0d0d24;
     color: #F1DAC4;
     margin-bottom: 10px;
     text-align: center; 
     font-family: 'Georgia', serif;
-  }
-  
-  
-  .top-lists {
-    margin-top: 20px;
-  }
+}
 
-  button.add-to-list-button {
+
+.top-lists {
+    margin-top: 20px;
+}
+
+button.add-to-list-button {
     color:#1a1a2e;
     background-color: #f1dac4;
-  }
-  button {
+}
+button {
     color:#1a1a2e;
     background-color: #f1dac4;
-  }
-  
-  .main-content {
+}
+
+.main-content {
     display: flex;
     margin-top: 20px;
-  }
-  
-  .movie-lists {
+    background-color: #0d0d24;
+}
+
+.movie-lists {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  
+}
+
 .filter-button {
     color:#0d0d24;
     background: #f1dac4;
@@ -106,11 +114,10 @@
     padding: 0;
     display: flex;
     align-items: center;
-  }
-  
-  .filter-icon {
+}
+
+.filter-icon {
     width: 24px;
     height: 24px;
     margin-left: 10px;
-  }
-  
+}

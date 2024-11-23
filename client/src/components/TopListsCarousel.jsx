@@ -2,7 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import "../styles/TopListsCarousel.css";
 import JawsThumbnail from "../assets/test.jpg"; // Replace with your actual images
-import AvengersThumbnail from "../assets/test.jpg";
+
+import AvengersThumbnail from "../assets/AvengersThumbnail.png";
 import LOTRThumbnail from "../assets/test.jpg";
 
 //run these

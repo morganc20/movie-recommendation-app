@@ -13,6 +13,7 @@ import CaptainPhillipsThumbnail from "../assets/test.jpg";
 import AdriftThumbnail from "../assets/test.jpg";
 import ThrillerNightThumbnail from "../assets/test.jpg";
 import { getRecommendedContent } from "../../api/app";
+import AvengersThumbnail from '../assets/AvengersThumbnail.png';
 
 const Title = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");
@@ -32,27 +33,6 @@ const Title = () => {
 
     fetchRecommendedMovies();
   }, []); // Fetch once when the component mounts
-
-  // const recommendedMovies = [
-  //   {
-  //     id: 1,
-  //     title: "Jaws",
-  //     genre: "Thriller",
-  //     thumbnail: JawsThumbnail,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Captain Phillips",
-  //     genre: "Adventure",
-  //     thumbnail: CaptainPhillipsThumbnail,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Adrift",
-  //     genre: "Drama",
-  //     thumbnail: AdriftThumbnail,
-  //   },
-  // ];
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -79,11 +59,10 @@ const Title = () => {
   ];
 
   return (
-    <div className="forum">
+    <div className="m-title">
       <Header />
-      <div className="forum-content">
-        <div>
-            {/* <h1 className="forum-title">Movie Title</h1> */}
+      <div className="content-wrapper">
+        <div className="details-wrapper">
             <aside className="details-sidebar">
                 <h3>Marvel</h3>
                 <h1>The Avengers</h1>
@@ -99,51 +78,23 @@ const Title = () => {
                         options={[
                             { label: 'Add to Space Wizards', href: '#a' },
                             { label: 'Add to Nostalgia', href: '#b' },
-                            {label: 'Add to New List', href: '#c'}
+                            {label: 'Create New List'}
                         ]}
                         buttonStyle={{ backgroundColor: '#f1dac4', color: 'black' }}
                         menuStyle={{ backgroundColor: '#f1dac4' }}
                     />
-                    {/* <button className="add-to-list-button">Add to My List</button> */}
                 </ul>
             </aside> 
-            
-            {/* <ListDropdown
-                buttonLabel="Menu 2"
-                options={[
-                    { label: 'Option 1', href: '#1' },
-                    { label: 'Option 2', href: '#2', onClick: () => alert('Clicked!') },
-                ]}
-                buttonStyle={{ backgroundColor: 'blue', color: 'white' }}
-                menuStyle={{ backgroundColor: 'lightblue' }}
-            /> */}
-            <TopListsCarousel />
+
+            <img src={AvengersThumbnail} alt={AvengersThumbnail} className="thumbnail-image" />
+
+            </div>
 
             
             <div>
                 <h2>Synopsys</h2>
                 <p className="synopsis-text">
-                Nam eu nibh est. Cras sit amet orci leo. Fusce interdum eleifend
-          pretium. Sed porttitor leo ut tristique molestie.
-          <br />
-          Aenean a magna pharetra, varius elit et, sodales mauris. Pellentesque
-          malesuada, nibh commodo mollis aliquam, sapien ipsum
-          <br />
-          faucibus enim, vitae cursus arcu sapien ut quam. Donec eu ligula mi.
-          In vel nisi tempus nulla sagittis interdum et vel nibh.
-          <br />
-          Curabitur ullamcorper est est, non iaculis erat blandit quis. Donec
-          pulvinar egestas nulla vitae malesuada. Integer commodo <br />
-          rhoncus dui, non malesuada lectus porttitor a. Vivamus urna leo,
-          sollicitudin quis imperdiet non, sollicitudin sit amet ligula. <br />
-          Fusce dui lectus, sagittis ut pulvinar et, dapibus sed eros. Donec ut
-          velit fermentum, pulvinar magna id, fringilla neque.
-          <br />
-          Vestibulum vestibulum blandit vestibulum. Mauris vestibulum, dolor non
-          eleifend efficitur, massa enim posuere tellus,
-          <br />
-          quis porttitor tortor quam ac lacus.
-          
+                When Thor's evil brother, Loki (Tom Hiddleston), gains access to the unlimited power of the energy cube called the Tesseract, Nick Fury (Samuel L. Jackson), director of S.H.I.E.L.D., initiates a superhero recruitment effort to defeat the unprecedented threat to Earth. Joining Fury's "dream team" are Iron Man (Robert Downey Jr.), Captain America (Chris Evans), the Hulk (Mark Ruffalo), Thor (Chris Hemsworth), the Black Widow (Scarlett Johansson) and Hawkeye (Jeremy Renner).
                 </p>
             </div>
 
@@ -158,15 +109,16 @@ const Title = () => {
               movieTitle="The Avengers"
               genre="Action Adventure"
               castSummary="Robert Downey Jr, Chris Hemsworth, Chris Evans, Scarlett Johannson"
-              movies={weeklyMovies}
+              movies={recommendedMovies}
             />
             <MovieTitle
               studio = "Warner Brothers"
               movieTitle="Interstellar"
               genre="Thriller Sci-Fi"
               castSummary="Matthew McConaughey, Michael Caine, Anne Hathaway"
-              movies={recommendedMovies}
+              movies={weeklyMovies}
             /> 
+            
           </div>
         </div>
         
@@ -187,7 +139,7 @@ const Title = () => {
               movies={weeklyMovies}
             />
         </div>
-      </div>
+      
     </div>
   );
 };

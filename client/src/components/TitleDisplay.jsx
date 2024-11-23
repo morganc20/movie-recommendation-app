@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/TitleDisplay.css';
 import HeartIcon from '../assets/heart.svg'; 
-import MenuDotsIcon from '../assets/heart.svg'; 
+import ListDropdown from '../components/ListDropdown.jsx';
 
 const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
   const [favorites, setFavorites] = useState({}); 
@@ -29,9 +29,16 @@ const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
         <button className="favorite-button" onClick={() => toggleFavorite(title)}>
           <img src={HeartIcon} alt="Favorite" className={`heart-icon ${favorites[title] ? 'favorited' : ''}`} />
         </button>
-        <button className="menu-button">
-          <img src={MenuDotsIcon} alt="Menu" className="menu-icon" />
-        </button>
+        <ListDropdown
+                        buttonLabel="Add to List"
+                        options={[
+                            { label: 'Add to Space Wizards', href: '#a' },
+                            { label: 'Add to Nostalgia', href: '#b' },
+                            {label: 'Create New List'}
+                        ]}
+                        buttonStyle={{ backgroundColor: '#f1dac4', color: 'black' }}
+                        menuStyle={{ backgroundColor: '#f1dac4' }}
+                    />
       </div>
     </div>
   );
