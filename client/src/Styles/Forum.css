@@ -12,52 +12,61 @@
     margin-top: 20px;
     font-family: 'Georgia', serif;
 
-  }
-  
-  .forum-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .section-title {
-    font-size: 1.5rem;
-    color: #F1DAC4;
-    margin-bottom: 10px;
-    text-align: center; 
-    font-family: 'Georgia', serif;
+.forum-title {
+  text-align: center;
+  font-size: 50vw; /* Quick Fix: Use this to increase the heading size*/
+  color: #F1DAC4;
+  margin-top: 20px;
+  font-family: 'Georgia', serif;
+}
 
-  }
+.forum-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #F1DAC4;
+  margin-bottom: 10px;
+  text-align: center; 
+  font-family: 'Georgia', serif;
   
-  
-  .top-lists {
-    margin-top: 20px;
-  }
-  
-  .main-content {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .movie-lists {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
+}
+
+
+.top-lists {
+  margin-top: 20px;
+}
+
+.main-content {
+  display: flex;
+  margin-top: 20px;
+}
+
+.movie-lists {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .filter-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .filter-icon {
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
-  }
-  
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+h1 {
+  text-align: center;
+}

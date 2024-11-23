@@ -83,7 +83,7 @@ const Forum = () => {
       <div className="forum-content">
         <h1 className="forum-title">Forum</h1>
         <SearchBar />
-        <TopListsCarousel />
+          <TopListsCarousel title="Top Lists"/>
         <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
         <div className="main-content">
           <SortSidebar />

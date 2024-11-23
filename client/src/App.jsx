@@ -12,6 +12,8 @@ import Animation from './pages/Animation.jsx';
 import MyLists from './pages/MyLists.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Title from './pages/Title.jsx';
+
 
 
 
@@ -29,6 +31,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/title" element={<Title />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/movie" element={<Movie />} />
+          <Route path="/television" element={<Television />} />
+          <Route path="/animation" element={<Animation />} />
+          <Route path="/my-lists" element={<MyLists />} />
+          <Route path="/title" element={<Title />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/television" element={<Television />} />
