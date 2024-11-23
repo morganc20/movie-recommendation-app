@@ -5,10 +5,16 @@ import TopListsCarousel from '../components/TopListsCarousel';
 import SortSidebar from '../components/SortSidebar';
 import TitleDisplay from '../components/TitleDisplay';
 import Tabs from '../components/Tabs';
+<<<<<<< HEAD
+import '../styles/home.css';
+
+import Logo from '../assets/logo.svg';
+=======
 import '../styles/Home.css';
 import Logo from '../assets/logo.svg'; 
 
 
+>>>>>>> 3141e7ca680b42a305aedf4c804a0481a0b0976e
 import JawsThumbnail from '../assets/test.jpg';
 import CaptainPhillipsThumbnail from '../assets/test.jpg';
 import AdriftThumbnail from '../assets/test.jpg';
@@ -61,7 +67,11 @@ const Animation = () => {
 
   return (
     <div className="forum">
+<<<<<<< HEAD
+      <Header/>
+=======
       <Header />
+>>>>>>> 3141e7ca680b42a305aedf4c804a0481a0b0976e
       <div className="forum-content">
       <img src={Logo} alt="Logo" className="main-logo" />
         <SearchBar />
