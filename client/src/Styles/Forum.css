@@ -1,9 +1,16 @@
 .forum {
-  background-color: #0d0d24;
-  color: #f5f5f5;
-  min-height: 100vh;
-  padding: 20px;
-}
+    background-color: #0d0d24;
+    color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .forum-title {
+    text-align: center;
+    font-size: 80px; /* Quick Fix: Use this to increase the heading size*/
+    color: #F1DAC4;
+    margin-top: 20px;
+    font-family: 'Georgia', serif;
 
 .forum-title {
   text-align: center;
