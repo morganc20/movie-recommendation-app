@@ -43,6 +43,7 @@ function App() {
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
           <Route path="/my-lists" element={<MyLists />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
     </AuthProvider>
