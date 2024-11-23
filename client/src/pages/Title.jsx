@@ -108,14 +108,14 @@ const Title = () => {
               studio = "Marvel"
               movieTitle="The Avengers"
               genre="Action Adventure"
-              castSummary="Robert Downey Jr, Chris Hemsworth, Chris Evans, Scarlett Johannson"
+              cast-summary="Robert Downey Jr, Chris Hemsworth, Chris Evans, Scarlett Johannson"
               movies={recommendedMovies}
             />
             <MovieTitle
               studio = "Warner Brothers"
               movieTitle="Interstellar"
               genre="Thriller Sci-Fi"
-              castSummary="Matthew McConaughey, Michael Caine, Anne Hathaway"
+              cast-summary="Matthew McConaughey, Michael Caine, Anne Hathaway"
               movies={weeklyMovies}
             /> 
             
