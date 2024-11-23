@@ -3,8 +3,6 @@ services:
     build: ./server
     ports:
       - "8000:8000"
-    env_file:
-      - .env
     volumes:
       - ./server:/app
 
@@ -14,8 +12,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5173:5173"
-    env_file:
-      - ./client/.env
     volumes:
       - ./client:/app
       - /app/node_modules

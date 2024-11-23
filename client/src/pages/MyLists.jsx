@@ -64,10 +64,10 @@ const MyLists = () => {
         <h1 className="forum-title">My Lists</h1>
         <SearchBar placeholder='Search your created and saved lists'/>
           <TopListsCarousel title="Browse Your Lists"/>
-        <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
+          <TopListsCarousel title="Liked Lists"/>
+          <TopListsCarousel title=" Shark Week Vibes"/>
         <div className="main-content">
-          <SortSidebar />
-          <div className="movie-lists">
+          {/* <div className="movie-lists">
             <TitleDisplay
               title="Jaws"
               director="Steven Spielberg"
@@ -82,7 +82,7 @@ const MyLists = () => {
               cast="Richard Dreyfuss, Robert Shaw,..."
               movieImage={recommendedMovies.find((movie) => movie.title === "Jaws")?.movieImage}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
