@@ -27,6 +27,7 @@ class ListView(BaseModel):
     userId: str
     listId: str
     name: str
+    contentIds: List[str]
     description: str
     active: bool
     ownerName: Optional[str] = None

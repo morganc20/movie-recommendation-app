@@ -198,6 +198,7 @@ def get_all_list():
             description=list_data.get('description'),
             active=list_data.get('active'),
             ownerName=owner_name,
+            contentIds=list_data.get('contentIds'),
             listId=list_id
         )
         list_views.append(list_view)
