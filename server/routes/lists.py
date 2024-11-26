@@ -7,8 +7,8 @@ from model.list import ListCreate
 from model.users import User
 from services.list_service import (
     create_list, get_list, add_content_to_list, remove_content_from_list,
-    toggle_private, give_rating_to_list, update_rating, get_all_lists_from_rating, get_average_rating
-)
+    toggle_private, give_rating_to_list, update_rating, get_all_lists_from_rating, get_average_rating, get_all_list, edit_list_by_id_admin,
+    delete_list_by_id)
 from utils.security import get_current_user
 
 router = APIRouter()
@@ -28,6 +28,25 @@ async def get_user_lists(username: str):
     Get all lists for a user by username.
     """
     return get_list(username)
+
+
+@router.get("/lists")
+async def get_all_lists():
+    """
+    Get all lists.
+    """
+    return get_all_list()
+
+
+@router.put("/lists/{list_id}/edit")
+async def edit_list(list_id: str,
+                    user_id: Optional[str] = None,
+                    description: Optional[str] = None,
+                    active: Optional[bool] = None):
+    """
+    Edit a list's owner, description, or active status by listId.
+    """
+    return edit_list_by_id_admin(list_id, user_id, description, active)
 
 
 @router.post("/lists/{list_id}/content/{content_id}")
@@ -77,9 +96,18 @@ async def get_lists_by_rating(target_rating: int):
     """
     return get_all_lists_from_rating(target_rating)
 
+
 @router.get("/lists/average-rating/{list_id}")
 async def get_average_rating_for_list(list_id: str):
     """
     Get the average rating for a list.
     """
     return get_average_rating(list_id)
+
+
+@router.delete("/lists/{list_id}")
+async def delete_list(list_id: str):
+    """
+    Delete a list by listId.
+    """
+    return delete_list_by_id(list_id)

@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from db import db
 from google.cloud import firestore
 # from firebase_admin import firestore
-from model.list import ListCreate
+from model.list import ListCreate, ListView
 from model.users import User
 from model.ratings import RatingCreate
 
@@ -169,3 +169,80 @@ def get_average_rating(list_id: str):
         total_score += rating_doc.to_dict().get("score", 0)
 
     return {"averageRating": total_score / len(rating_ids)}
+
+
+def get_all_list():
+    '''
+    Get all lists using the ListView model. name is firstName + lastName from the users collection.
+    '''
+    list_docs = db.collection('lists').get()
+
+    list_views = []
+    for doc in list_docs:
+        list_data = doc.to_dict()
+        user_id = list_data.get('userId')
+        list_id = doc.id
+
+        # Get the user's name
+        user_doc = db.collection('users').document(user_id).get()
+        if not user_doc.exists:
+            # Skip this list if the user is not found
+            continue
+        user_data = user_doc.to_dict()
+        owner_name = user_data.get('firstName') + \
+            ' ' + user_data.get('lastName')
+
+        list_view = ListView(
+            userId=list_data.get('userId'),
+            name=list_data.get('name'),
+            description=list_data.get('description'),
+            active=list_data.get('active'),
+            ownerName=owner_name,
+            listId=list_id
+        )
+        list_views.append(list_view)
+    return list_views
+
+
+def edit_list_by_id_admin(list_id: str, user_id: Optional[str] = None,
+                          description: Optional[str] = None,
+                          active: Optional[bool] = None):
+    """
+    Edit a list by listId with specific attributes.
+    """
+    list_ref = db.collection('lists').document(list_id)
+    list_doc = list_ref.get()
+
+    if not list_doc.exists:
+        raise HTTPException(status_code=404, detail="List not found")
+
+    # Prepare the update data
+    update_data = {}
+    if user_id is not None:
+        update_data['userId'] = user_id
+    if description is not None:
+        update_data['description'] = description
+    if active is not None:
+        update_data['active'] = active
+
+    if not update_data:
+        raise HTTPException(
+            status_code=400, detail="No valid fields provided for update")
+
+    # Update the document
+    list_ref.update(update_data)
+    return {"message": "List updated successfully"}
+
+
+def delete_list_by_id(list_id: str):
+    """
+    Delete a list by listId.
+    """
+    list_ref = db.collection('lists').document(list_id)
+    list_doc = list_ref.get()
+
+    if not list_doc.exists:
+        raise HTTPException(status_code=404, detail="List not found")
+
+    list_ref.delete()
+    return {"message": "List deleted successfully"}

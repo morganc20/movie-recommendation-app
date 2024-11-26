@@ -154,3 +154,39 @@ export const deleteUser = async (userId) => {
     throw error;
   }
 };
+
+export const getAllLists = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/lists`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching lists:", error);
+    return [];
+  }
+};
+
+export const updateList = async (listId, userId, description, active) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/lists/${listId}/edit`, null, {
+      params: {
+        user_id: userId,
+        description,
+        active,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating list with ID ${listId}:`, error);
+    return null;
+  }
+};
+
+export const deleteList = async (listId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/lists/${listId}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting list with ID ${listId}:`, error);
+    throw error;
+  }
+};
