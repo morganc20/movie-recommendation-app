@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from model.users import UserCreate, LoginRequest, TokenResponse
-from services.auth_service import register_user, login_user, get_user_by_id
+from model.users import UserCreate, LoginRequest, TokenResponse, UserView
+from services.auth_service import register_user, login_user, get_user_by_id, get_user_role, promote_user_to_mod, get_all_users, update_user, delete_user
 from db import db
 from utils.security import verify_password, get_password_hash
 
@@ -33,7 +33,8 @@ async def login(login_request: LoginRequest):
             access_token=token['access_token'],
             token_type=token['token_type'],
             userId=token['userId'],
-            username=token['username']
+            username=token['username'],
+            role=token['role']
         )
     except HTTPException as e:
         raise e
@@ -122,6 +123,81 @@ async def get_user(user_id: str):
     try:
         user = await get_user_by_id(user_id)
         return ResponseModel(message="User found", data=user)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.get("/get-user-role/{user_id}", response_model=ResponseModel)
+async def get_role(user_id: str):
+    """
+    Get the role of a user by their user ID.
+    """
+    try:
+        role = await get_user_role(user_id)
+        return ResponseModel(message="Role found", data={"role": role})
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.put("/promote-user/{user_id}", response_model=ResponseModel)
+async def promote_user(user_id: str):
+    """
+    Promote a user to moderator.
+    """
+    try:
+        result = await promote_user_to_mod(user_id)
+        return ResponseModel(message=result['message'])
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.get("/getAllUsers", response_model=ResponseModel)
+async def get_all():
+    """
+    Get all users.
+    """
+    try:
+        users = await get_all_users()
+        return ResponseModel(message="Users fetched successfully", data={"users": users})
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.patch("/update-user/{user_id}", response_model=ResponseModel)
+async def update_user_route(user_id: str, user: UserView):
+    """
+    Update a user by their user ID.
+    """
+    try:
+        result = await update_user(user_id, user)
+        return ResponseModel(message="User updated successfully", data=result)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.delete("/delete/{user_id}", response_model=ResponseModel)
+async def delete(user_id: str):
+    """
+    Delete a user by their user ID.
+    """
+    try:
+        result = await delete_user(user_id)
+        return ResponseModel(message="User deleted successfully", data=result)
     except HTTPException as e:
         raise e
     except Exception as e:

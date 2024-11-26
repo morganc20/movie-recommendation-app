@@ -10,7 +10,10 @@ class UserCreate(BaseModel):
     '''
     username: str
     email: EmailStr
+    firstName: str
+    lastName: str
     password: str
+    role: str = "user"
 
 
 class User(BaseModel):
@@ -22,6 +25,16 @@ class User(BaseModel):
     email: EmailStr
 
 
+class UserView(BaseModel):
+    '''
+    UserView is the Pydantic model for the user view.
+    '''
+    firstName: str
+    lastName: str
+    email: str
+    username: str
+
+
 class TokenResponse(BaseModel):
     '''
     TokenResponse is the Pydantic model for the token response.
@@ -30,6 +43,7 @@ class TokenResponse(BaseModel):
     token_type: str = "Bearer"
     userId: str
     username: str
+    role: str
 
 
 class LoginRequest(BaseModel):
