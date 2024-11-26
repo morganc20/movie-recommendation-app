@@ -39,35 +39,39 @@ def get_reports_for_review_part2() -> List[dict]:
     for report_doc in report_docs:
         report_data = report_doc.to_dict()
 
+        list_id = report_data.get('listId', 'N/A')
         list_name = "N/A"
         list_owner = "N/A"
 
-        if report_data.get('listId'):
-            list_doc = db.collection('lists').document(
-                report_data['listId']).get()
+        if list_id != "N/A":
+            # Fetch the list document
+            list_doc = db.collection('lists').document(list_id).get()
             if list_doc.exists:
                 list_data = list_doc.to_dict()
                 list_name = list_data.get('name', 'N/A')
-                list_owner = list_data.get('userId', 'N/A')
+                list_owner_id = list_data.get('userId', 'N/A')
 
-        if list_owner != "N/A" and list_owner.strip():
-            user_doc = db.collection('users').document(list_owner).get()
-            if user_doc.exists:
-                user_data = user_doc.to_dict()
-                list_owner = user_data.get('username', 'N/A')
+                if list_owner_id != "N/A" and list_owner_id.strip():
+                    user_doc = db.collection(
+                        'users').document(list_owner_id).get()
+                    if user_doc.exists:
+                        user_data = user_doc.to_dict()
+                        first_name = user_data.get('firstName', '').strip()
+                        last_name = user_data.get('lastName', '').strip()
+                        list_owner = f"{first_name} {
+                            last_name}".strip() or user_data.get('username', 'N/A')
 
-        # Create a ReportView instance to represent the report
         report_id = report_doc.id
         report_view = ReportView(
             reportId=report_id,
             listName=list_name,
             listOwner=list_owner,
+            listId=list_id,
             userId=report_data['userId'],
             description=report_data['description'],
             reportDate=report_data['timestamp']
         )
 
-        # Add the report view to the list
         reports_for_review.append(report_view)
 
     return [report.dict() for report in reports_for_review]

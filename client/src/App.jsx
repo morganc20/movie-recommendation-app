@@ -29,7 +29,11 @@ const AdminRoute = ({ children }) => {
 const ModeratorRoute = ({ children }) => {
   // TODO: Add ModeratorRoute
   const { user } = useAuth();
-  return user && user.role === "moderator" ? children : <Navigate to="/" />;
+  return (user && user.role === "moderator") || user.role === "admin" ? (
+    children
+  ) : (
+    <Navigate to="/" />
+  );
 };
 
 function App() {
