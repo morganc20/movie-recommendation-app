@@ -58,8 +58,7 @@ def get_reports_for_review_part2() -> List[dict]:
                         user_data = user_doc.to_dict()
                         first_name = user_data.get('firstName', '').strip()
                         last_name = user_data.get('lastName', '').strip()
-                        list_owner = f"{first_name} {
-                            last_name}".strip() or user_data.get('username', 'N/A')
+                        list_owner = f"{first_name} {last_name}".strip() or user_data.get('username', 'N/A')
 
         report_id = report_doc.id
         report_view = ReportView(
