@@ -1,88 +1,58 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
-import TopListsCarousel from '../components/TopListsCarousel';
-import SortSidebar from '../components/SortSidebar';
-import TitleDisplay from '../components/TitleDisplay';
-import Tabs from '../components/Tabs';
-import '../styles/MyLists.css';
-
-import JawsThumbnail from '../assets/test.jpg';
-import CaptainPhillipsThumbnail from '../assets/test.jpg';
-import AdriftThumbnail from '../assets/test.jpg';
-import ThrillerNightThumbnail from '../assets/test.jpg';
+import React, { useEffect, useState } from "react";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
+import TopListsCarousel from "../components/TopListsCarousel";
+import TitleDisplay from "../components/TitleDisplay";
+import "../styles/MyLists.css";
+import { getMyLists } from "../../api/app.js";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const MyLists = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Recommended");
+  const [myLists, setMyLists] = useState([]);
+  const { user } = useAuth();
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
+  useEffect(() => {
+    const fetchMyLists = async () => {
+      if (!user || !user.userId) {
+        console.warn("User not logged in or userId missing");
+        return;
+      }
 
-  const categories = ["Recommended", "Weekly 100", "Comedy", "Action", "Romantic", "Thriller", "More"];
+      try {
+        const fetchedMyLists = await getMyLists(user.userId);
+        setMyLists(fetchedMyLists || []);
+      } catch (error) {
+        console.error("Error fetching lists:", error);
+      }
+    };
 
-  const recommendedMovies = [
-    {
-      id: 1,
-      title: "Jaws",
-      genre: "Thriller",
-      director: "Quentin Tarantino",
-      cast: "abc, def, xyz",
-      movieImage: JawsThumbnail,
-    },
-    {
-      id: 2,
-      title: "Captain Phillips",
-      genre: "Thriller",
-      director: "Quentin Tarantino",
-      cast: "abc, def, xyz",
-      movieImage: CaptainPhillipsThumbnail,
-    },
-    {
-        id: 3,
-        title: "Adrift",
-        genre: "Drama",
-        director: "Quentin Tarantino",
-        cast: "abc, def, xyz",
-        movieImage: AdriftThumbnail,
-    },
-  ];
-
-  const weeklyMovies = [
-    {
-      id: 4,
-      title: "Thriller Night",
-      genre: "Thriller",
-      thumbnail: ThrillerNightThumbnail,
-    },
-  ];
+    fetchMyLists();
+  }, [user]);
 
   return (
     <div className="forum">
       <Header />
       <div className="forum-content">
         <h1 className="forum-title">My Lists</h1>
-        <SearchBar placeholder='Search your created and saved lists'/>
-          <TopListsCarousel title="Browse Your Lists"/>
-          <TopListsCarousel title="Liked Lists"/>
-          <TopListsCarousel title=" Shark Week Vibes"/>
+        <SearchBar placeholder="Search your created and saved lists" />
+        <TopListsCarousel title="Browse Your Lists" />
         <div className="main-content">
-          {/* <div className="movie-lists">
-            <TitleDisplay
-              title="Jaws"
-              director="Steven Spielberg"
-              genre="Action Adventure"
-              cast="Richard Dreyfuss, Robert Shaw,..."
-              movieImage={recommendedMovies.find((movie) => movie.title === "Jaws")?.movieImage}  // Quick Work: You can call your API endpoint here to retrieve an image and it should be handled
-            />
-            <TitleDisplay
-              title="Jaws"
-              director="Steven Spielberg"
-              genre="Action Adventure"
-              cast="Richard Dreyfuss, Robert Shaw,..."
-              movieImage={recommendedMovies.find((movie) => movie.title === "Jaws")?.movieImage}
-            />
-          </div> */}
+          {myLists.length > 0 ? (
+            <div className="movie-lists">
+              {myLists.map((list) => (
+                <TitleDisplay
+                  key={list.id}
+                  title={list.title}
+                  genre={list.genre}
+                  director={list.director}
+                  cast={list.cast}
+                  movieImage={list.movieImage}
+                />
+              ))}
+            </div>
+          ) : (
+            <p>No lists found.</p>
+          )}
         </div>
       </div>
     </div>

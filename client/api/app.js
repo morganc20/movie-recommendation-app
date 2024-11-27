@@ -165,6 +165,16 @@ export const getAllLists = async () => {
   }
 };
 
+export const getMyLists = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/lists/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user lists:", error);
+    return [];
+  }
+};
+
 export const updateList = async (listId, userId, description, active) => {
   try {
     const response = await axios.put(`${BASE_URL}/lists/${listId}/edit`, null, {
