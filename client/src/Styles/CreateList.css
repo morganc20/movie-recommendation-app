@@ -1,6 +1,6 @@
 body, html {
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
     background-color: #0d0d24;
     color: #f5f5f5;
     font-family: 'Georgia', serif;
@@ -15,16 +15,7 @@ body, html {
     padding: 20px;
 }
 
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background-color: #0d0d24;
-  }
-
-  
-  .create-list-container {
+.create-list-container {
     width: 90%;
     max-width: 600px;
     margin: 20px auto;
@@ -32,32 +23,32 @@ body, html {
     background-color: #0d0d24;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .create-list-title {
+}
+
+.create-list-title {
     text-align: center;
     font-size: 2rem;
     color: #F1DAC4;
     margin-bottom: 20px;
-  }
-  
-  .form-section {
+}
+
+.form-section {
     margin-bottom: 20px;
-  }
-  
-  .form-section-title {
+}
+
+.form-section-title {
     font-size: 1.5rem;
     color: #F1DAC4;
     margin-bottom: 10px;
-  }
-  
-  .form-label {
+}
+
+.form-label {
     display: block;
     font-size: 1rem;
     margin: 10px 0 5px;
-  }
-  
-  .form-input, .form-textarea {
+}
+
+.form-input, .form-textarea {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -66,20 +57,20 @@ body, html {
     border: 1px solid #F1DAC4;
     border-radius: 5px;
     margin-bottom: 15px;
-  }
-  
-  .form-textarea {
+}
+
+.form-textarea {
     height: 100px;
     resize: none;
-  }
-  
-  .privacy-buttons {
+}
+
+.privacy-buttons {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
-  }
-  
-  .privacy-button {
+}
+
+.privacy-button {
     padding: 10px 20px;
     font-size: 1rem;
     background-color: #333;
@@ -88,19 +79,19 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .privacy-button.selected {
+}
+
+.privacy-button.selected {
     background-color: #F1DAC4;
     color: #333;
-  }
-  
-  .privacy-button:hover {
+}
+
+.privacy-button:hover {
     background-color: #F1DAC4;
     color: #333;
-  }
-  
-  .create-list-button {
+}
+
+.create-list-button {
     width: 100%;
     padding: 15px;
     font-size: 1.2rem;
@@ -110,66 +101,82 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .create-list-button:hover {
+}
+
+.create-list-button:hover {
     background-color: #e8c8a4;
-  }
-  
-  .search-section {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .search-input {
-    flex: 1;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #F1DAC4;
-    border-radius: 5px 0 0 5px;
-    background-color: #0d0d24;
-  }
-  
-  .search-button {
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #333;
-    color: #F1DAC4;
-    border: 1px solid #F1DAC4;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .search-button:hover {
-    background-color: #F1DAC4;
-    color: #333;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .create-list-container {
-      padding: 15px;
-    }
-  
-    .form-section-title {
-      font-size: 1.2rem;
-    }
-  
-    .create-list-button {
-      font-size: 1rem;
-      padding: 12px;
-    }
-  
-    .privacy-button {
-      font-size: 0.9rem;
-      padding: 8px 16px;
-    }
-  }
-  
-  .search-bar-container {
+}
+
+.create-list-page .search-section {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-    width: 800px;
-  }
+}
+
+.create-list-page .search-bar {
+    width: 800px; 
+    max-width: 600px; 
+    display: flex;
+    align-items: center;
+    border: 2px solid #F1DAC4;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.create-list-page .search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: transparent;
+    color: #F1DAC4;
+}
+
+.create-list-page .search-input::placeholder {
+    color: #F1DAC4;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+}
+
+.create-list-page .search-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #F1DAC4;
+}
+
+.create-list-page .search-button:hover {
+    background-color: #F1DAC4;
+    color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .create-list-container {
+        padding: 15px;
+    }
+
+    .form-section-title {
+        font-size: 1.2rem;
+    }
+
+    .create-list-button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .privacy-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .create-list-page .search-bar {
+        max-width: 100%; 
+    }
+}
