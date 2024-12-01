@@ -10,6 +10,14 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleProfileClick = () => {
+    if (window.innerWidth > 768) {
+      window.location.href = '/profile';
+    } else {
+      toggleSidebar();
+    }
+  };
+
   return (
     <div className="header-container">
       <img src={Logo} alt="Logo" className="logo" />
@@ -24,7 +32,7 @@ const Header = () => {
         src={ProfileIcon}
         alt="Profile Icon"
         className="profile-icon"
-        onClick={toggleSidebar}
+        onClick={handleProfileClick}
       />
 
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
@@ -32,11 +40,12 @@ const Header = () => {
           &times;
         </button>
         <nav className="sidebar-links">
+        <a href="/profile">Profile</a> 
+        <a href="/my-lists">My Lists</a>
           <a href="/movie">Movies</a>
           <a href="/television">Television</a>
           <a href="/animation">Animation</a>
           <a href="/forum">Forum</a>
-          <a href="/my-lists">My Lists</a>
         </nav>
       </div>
       <div
@@ -48,4 +57,3 @@ const Header = () => {
 };
 
 export default Header;
-
