@@ -1,0 +1,175 @@
+body, html {
+    margin: 0; 
+    padding: 0; 
+    background-color: #0d0d24;
+    color: #f5f5f5;
+    font-family: 'Georgia', serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.create-list-page {
+    background-color: #0d0d24;
+    color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #0d0d24;
+  }
+
+  
+  .create-list-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0d0d24;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-list-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #F1DAC4;
+    margin-bottom: 20px;
+  }
+  
+  .form-section {
+    margin-bottom: 20px;
+  }
+  
+  .form-section-title {
+    font-size: 1.5rem;
+    color: #F1DAC4;
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 1rem;
+    margin: 10px 0 5px;
+  }
+  
+  .form-input, .form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #EAE6E1;
+    border: 1px solid #F1DAC4;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .form-textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .privacy-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .privacy-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #F1DAC4;
+    border: 1px solid #F1DAC4;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .privacy-button.selected {
+    background-color: #F1DAC4;
+    color: #333;
+  }
+  
+  .privacy-button:hover {
+    background-color: #F1DAC4;
+    color: #333;
+  }
+  
+  .create-list-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #F1DAC4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-list-button:hover {
+    background-color: #e8c8a4;
+  }
+  
+  .search-section {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #F1DAC4;
+    border-radius: 5px 0 0 5px;
+    background-color: #0d0d24;
+  }
+  
+  .search-button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #F1DAC4;
+    border: 1px solid #F1DAC4;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-button:hover {
+    background-color: #F1DAC4;
+    color: #333;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .create-list-container {
+      padding: 15px;
+    }
+  
+    .form-section-title {
+      font-size: 1.2rem;
+    }
+  
+    .create-list-button {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  
+    .privacy-button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  .search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    width: 800px;
+  }
