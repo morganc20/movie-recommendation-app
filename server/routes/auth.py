@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from model.users import UserCreate, LoginRequest, TokenResponse, UserView
-from services.auth_service import register_user, login_user, get_user_by_id, get_user_role, promote_user_to_mod, get_all_users, update_user, delete_user
+from services.auth_service import update_profile, get_user_details, register_user, login_user, get_user_by_id, get_user_role, promote_user_to_mod, get_all_users, update_user, delete_user
 from db import db
-from utils.security import verify_password, get_password_hash
+from utils.security import verify_password
 
 router = APIRouter()
 
@@ -198,6 +198,36 @@ async def delete(user_id: str):
     try:
         result = await delete_user(user_id)
         return ResponseModel(message="User deleted successfully", data=result)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.get("/get-user-details/{user_id}", response_model=ResponseModel)
+async def get_details(user_id: str):
+    """
+    Get a user's details by their user ID.
+    """
+    try:
+        user = await get_user_details(user_id)
+        return ResponseModel(message="User details found", data=user)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+@router.patch("/update-profile/{user_id}", response_model=ResponseModel)
+async def update_profile_route(user_id: str, update_data: dict):
+    """
+    Update a user's profile information by their user ID.
+    """
+    try:
+        result = await update_profile(user_id, update_data)
+        return ResponseModel(message="Profile updated successfully", data=result)
     except HTTPException as e:
         raise e
     except Exception as e:

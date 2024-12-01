@@ -144,3 +144,47 @@ async def delete_user(user_id: str):
 
     user_ref.delete()
     return {"message": "User deleted successfully"}
+
+
+async def get_user_details(user_id: str):
+    """
+    Get user details for profile.
+    """
+    try:
+        user = await get_user_by_id(user_id)
+        user.pop('passwordHash', None)
+        user.pop('salt', None)
+        return user
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
+
+async def update_profile(user_id: str, update_data: dict):
+    """
+    Update user profile information.
+    """
+    try:
+        user_ref = db.collection("users").document(user_id)
+        user_doc = user_ref.get()
+
+        if not user_doc.exists:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        user_data = update_data.copy()
+
+        if "password" in user_data:
+            hashed_password, salt = get_password_hash(
+                user_data.pop("password"))
+            user_data["passwordHash"] = hashed_password
+            user_data["salt"] = salt
+
+        user_ref.update(user_data)
+        return {"message": "Profile updated successfully"}
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {str(e)}")

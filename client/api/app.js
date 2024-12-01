@@ -200,3 +200,26 @@ export const deleteList = async (listId) => {
     throw error;
   }
 };
+
+export const getUserDetails = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-user-details/${userId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error(`Error fetching user details for ID ${userId}:`, error);
+    return null;
+  }
+};
+
+export const updateProfile = async (userId, updateData) => {
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/update-profile/${userId}`,
+      updateData
+    );
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating profile for user ${userId}:`, error);
+    throw error;
+  }
+};

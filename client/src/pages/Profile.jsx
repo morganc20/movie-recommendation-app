@@ -1,33 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import "../styles/Profile.css"; 
+import "../styles/Profile.css";
 import ProfilePhoto from "../assets/profile.svg";
-
+import { useAuth } from "../context/AuthContext";
+import { getUserDetails, updateProfile } from "../../api/app.js";
 
 const Profile = () => {
-  const [email, setEmail] = useState("Email@gmail.com");
-  const [firstName, setFirstName] = useState("Mockup");
-  const [lastName, setLastName] = useState("Mockup");
+  const { user } = useAuth();
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("************");
   const [editField, setEditField] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const handleSave = (field) => {
-    setEditField("");
-    alert(`${field} saved successfully!`);
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (!user) return;
+      const userDetails = await getUserDetails(user.userId);
+      if (userDetails) {
+        setEmail(userDetails.email);
+        setFirstName(userDetails.firstName);
+        setLastName(userDetails.lastName);
+      }
+      setLoading(false);
+    };
+    fetchUserDetails();
+  }, [user]);
+
+  const handleSave = async (field) => {
+    try {
+      const updatedData = {};
+
+      if (field === "password") {
+        updatedData.password = password;
+      } else {
+        updatedData.email = email;
+        updatedData.firstName = firstName;
+        updatedData.lastName = lastName;
+      }
+
+      await updateProfile(user.userId, updatedData);
+      setEditField("");
+      alert(`${field} saved successfully!`);
+    } catch (error) {
+      alert(`Failed to save ${field}. Please try again.`);
+    }
   };
 
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <div className="forum"> 
+    <div className="forum">
       <Header />
       <div className="forum-content">
         <h1 className="forum-title">Profile</h1>
         <div className="main-content">
-        <div className="profile-avatar">
+          <div className="profile-avatar">
             <img src={ProfilePhoto} alt="Avatar" className="avatar" />
-        </div>
-
+          </div>
           <div className="profile-fields">
-            {/* Email Field */}
             <div className="profile-field">
               <label>Email</label>
               <div className="input-container">
@@ -54,7 +86,6 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* First Name Field */}
             <div className="profile-field">
               <label>First Name</label>
               <div className="input-container">
@@ -81,7 +112,6 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Last Name Field */}
             <div className="profile-field">
               <label>Last Name</label>
               <div className="input-container">
@@ -108,13 +138,12 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Password Field */}
             <div className="profile-field">
               <label>Password</label>
               <div className="input-container">
                 <input
                   type="password"
-                  value={password}
+                  value={editField === "password" ? "" : password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={editField !== "password"}
                 />
@@ -136,13 +165,10 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <button className="logout-button">Log out</button>
+        <button className="logout-button">Logout</button>
       </div>
     </div>
   );
 };
 
 export default Profile;
-
-
-
