@@ -19,6 +19,7 @@ import ModeratorDashboard from "./pages/Moderator.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Title from "./pages/Title.jsx";
+import Profile from "./pages/Profile.jsx";
 
 // Protected Route for authenticated users
 const PrivateRoute = ({ children }) => {
@@ -55,6 +56,8 @@ function App() {
           <Route path="/movie" element={<Movie />} />
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
+          <Route path="/profile" element={<Profile />} />
+
 
           {/* Private Routes - Requires Authentication */}
           <Route
@@ -81,6 +84,14 @@ function App() {
               </PrivateRoute>
             }
           />
+          {/* <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          /> */}
 
           {/* Moderator and Admin Protected Routes */}
           <Route
