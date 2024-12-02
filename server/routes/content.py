@@ -30,11 +30,11 @@ async def get_allcontent():
 
 
 @router.get("/content/recommendations/{amount}")
-async def get_recommendations_route(amount: int):
+async def get_recommendations_route(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
     """
     Get content recommendations.
     """
-    return get_recommendations(amount)
+    return get_recommendations(amount, content_type, shuffle, genre, avg_rating)
 
 
 @router.delete("/content")

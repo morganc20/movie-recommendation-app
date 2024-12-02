@@ -10,7 +10,6 @@ class ContentCreate(BaseModel):
     '''
     ContentCreate is the Pydantic model for creating content.
     '''
-    contentId: str
     title: str
     director: str
     releaseYear: int
@@ -18,3 +17,4 @@ class ContentCreate(BaseModel):
     type: str  # "movie" or "tv_show"
     synopsis: str
     avgRating: float
+    photoUrl: str

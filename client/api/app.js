@@ -14,12 +14,23 @@ export const getAllContent = async () => {
   }
 };
 
-// Fetch content with avgRating greater than 7.5 since 2020 (can tweak later to get more relevant content)
-export const getRecommendedContent = async (amount = 10) => {
+// fetch recommended content from the database and return it as an array
+export const getRecommendedContent = async (
+  amount = 10,
+  content_type = "movie",
+  genre = null,
+  shuffle = false,
+  avg_rating = 8.8
+) => {
   try {
+    const genreQuery = genre ? `&genre=${genre}` : "";
+    const shuffleQuery = shuffle ? `&shuffle=${shuffle}` : "";
+    const ratingQuery = `&avg_rating=${avg_rating}`;
+
     const response = await axios.get(
-      `${BASE_URL}/content/recommendations/${amount}`
+      `${BASE_URL}/content/recommendations/${amount}?content_type=${content_type}${shuffleQuery}${genreQuery}${ratingQuery}`
     );
+
     return response.data;
   } catch (error) {
     console.error("Error fetching recommended content:", error);

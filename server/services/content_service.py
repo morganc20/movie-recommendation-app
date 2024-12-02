@@ -18,7 +18,8 @@ def add_content(content: ContentCreate):
         'genre': content.genre,
         'type': content.type,
         'synopsis': content.synopsis,
-        'avgRating': content.avgRating
+        'avgRating': content.avgRating,
+        'photoUrl': content.photoUrl
     }
     content_ref = db.collection('content').add(new_content)
     return {"contentId": content_ref[1].id, "message": "Content added successfully"}
@@ -36,22 +37,29 @@ def clear_all_content():
 
 def get_all_content():
     """
-    Get all content.
+    Get all content. 
     """
     content_docs = db.collection('content').get()
     return [doc.to_dict() for doc in content_docs]
 
 
-def get_recommendations(amount: int):
+def get_recommendations(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
     """
-    Get content recommendations. Amount is the number of recommendations to return. 
+    Get content recommendations. Amount is the number of recommendations to return.
+    content_type is either "movie" or "tv_show".  
+    genre is format "Documentary, Family" so the user can search for multiple genres.
     """
-    content_docs = db.collection('content').where(
-        'releaseYear', '>', 2020).where('avgRating', '>', 7.5).limit(amount).get()
+    content_docs = db.collection('content').where('avgRating', '>', avg_rating).where(
+        'type', '==', content_type).limit(amount).get()
 
-    # shuffle the content (need to decide if this is the best way to do it)
+    if genre:
+        genre_list = genre.split(', ')
+        content_docs = db.collection('content').where(
+            'type', '==', content_type).where('genre', 'in', genre_list).limit(amount).get()
+
     content_docs = list(content_docs)
-    random.shuffle(content_docs)
+    if shuffle:
+        random.shuffle(content_docs)
 
     return [doc.to_dict() for doc in content_docs]
 

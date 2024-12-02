@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
-import '../Styles/Tabs.css';
-import FilterIcon from '../assets/filter.svg'; 
+import React from "react";
+import "../Styles/Tabs.css";
+import FilterIcon from "../assets/filter.svg";
 
-const Tabs = ({ categories, onSelectCategory }) => {
-  const [activeTab, setActiveTab] = useState(categories[0]);
-
-  const handleTabClick = (category) => {
-    setActiveTab(category);
-    onSelectCategory(category);
-  };
-
+const Tabs = ({ categories, onSelectCategory, activeCategory }) => {
   return (
     <div className="tabs-wrapper">
       <div className="tabs">
         {categories.map((category) => (
           <button
             key={category}
-            className={`tab ${category === activeTab ? 'active' : ''}`}
-            onClick={() => handleTabClick(category)}
+            className={`tab ${category === activeCategory ? "active" : ""}`}
+            onClick={() => onSelectCategory(category)}
           >
             {category}
           </button>
@@ -31,5 +24,3 @@ const Tabs = ({ categories, onSelectCategory }) => {
 };
 
 export default Tabs;
-
-

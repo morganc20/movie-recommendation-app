@@ -188,3 +188,4 @@ async def update_profile(user_id: str, update_data: dict):
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+
