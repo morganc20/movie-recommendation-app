@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import "../styles/Profile.css"; 
+import "../styles/Profile.css";
 import ProfilePhoto from "../assets/profile.svg";
-
+import { useAuth } from "../context/AuthContext";
 
 const Profile = () => {
   const [email, setEmail] = useState("Email@gmail.com");
@@ -10,21 +10,27 @@ const Profile = () => {
   const [lastName, setLastName] = useState("Mockup");
   const [password, setPassword] = useState("************");
   const [editField, setEditField] = useState("");
+  const { logout } = useAuth(); // Access logout function
 
   const handleSave = (field) => {
     setEditField("");
     alert(`${field} saved successfully!`);
   };
 
+  const handleLogout = () => {
+    logout();
+    window.location.href = "/login"; // Redirect to the login page
+  };
+
   return (
-    <div className="forum"> 
+    <div className="forum">
       <Header />
       <div className="forum-content">
         <h1 className="forum-title">Profile</h1>
         <div className="main-content">
-        <div className="profile-avatar">
+          <div className="profile-avatar">
             <img src={ProfilePhoto} alt="Avatar" className="avatar" />
-        </div>
+          </div>
 
           <div className="profile-fields">
             {/* Email Field */}
@@ -136,13 +142,12 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <button className="logout-button">Log out</button>
+        <button className="logout-button" onClick={handleLogout}>
+          Log out
+        </button>
       </div>
     </div>
   );
 };
 
 export default Profile;
-
-
-
