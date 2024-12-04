@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { logout } = useAuth();
+  const { logout } = useAuth(); // Access logout function
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
