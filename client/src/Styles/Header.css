@@ -21,7 +21,8 @@
   margin-left: 15vw;
 }
 
-.nav-links a {
+.nav-links a,
+.logout-link {
   color: #F1DAC4;
   text-decoration: none;
   font-size: 1rem;
@@ -30,7 +31,8 @@
   transition: background-color 0.3s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.logout-link:hover {
   background-color: #333;
   color: #A69CAC;
 }
