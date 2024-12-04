@@ -58,7 +58,7 @@ function App() {
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/CreateList" element={<CreateList />} />
+          <Route path="/createList" element={<CreateList />} />
 
 
           {/* Private Routes - Requires Authentication */}
