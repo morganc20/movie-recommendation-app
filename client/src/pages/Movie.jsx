@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
 import TopListsCarousel from "../components/TopListsCarousel";
-import SortSidebar from "../components/SortSidebar";
 import TitleDisplay from "../components/TitleDisplay";
 import Tabs from "../components/Tabs";
 import "../styles/Movie.css";
@@ -23,6 +21,8 @@ const Movie = () => {
     "Sci-Fi",
     "Horror",
     "More",
+    "TV Shows",
+    "Animation",
   ];
 
   const fetchMovies = async (category) => {
@@ -32,9 +32,11 @@ const Movie = () => {
     try {
       let data;
       if (category === "Recommended") {
-        data = await getRecommendedContent(50, "movie");
+        data = await getRecommendedContent(50, "movie", null, false, 5);
+      } else if (category == "TV Shows") {
+        data = await getRecommendedContent(50, "tv_show", null, false, 5);
       } else if (categories.includes(category)) {
-        data = await getRecommendedContent(50, "movie", category);
+        data = await getRecommendedContent(50, "movie", category, false, 5);
       } else {
         data = [];
       }
@@ -59,37 +61,33 @@ const Movie = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Movies</h1>
-        <SearchBar />
-        <TopListsCarousel title="Top Movie Titles" />
+        <h1 className="forum-title">Media</h1>
+        <TopListsCarousel title="Browse Top content" />
         <Tabs
           categories={categories}
           onSelectCategory={handleCategorySelect}
           activeCategory={selectedCategory}
         />
 
-        <div className="main-content">
-          <SortSidebar />
-          <div className="movie-lists">
-            {loading ? (
-              <p>Loading...</p>
-            ) : error ? (
-              <p>{error}</p>
-            ) : movies.length > 0 ? (
-              movies.map((movie) => (
-                <TitleDisplay
-                  key={movie.title}
-                  title={movie.title}
-                  director={movie.director}
-                  genre={movie.genre}
-                  cast={`Cast: ${movie.cast || "Not available"}`}
-                  movieImage={movie.photoUrl}
-                />
-              ))
-            ) : (
-              <p>No movies available for this category.</p>
-            )}
-          </div>
+        <div className="movie-lists">
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : movies.length > 0 ? (
+            movies.map((movie) => (
+              <TitleDisplay
+                key={movie.title}
+                title={movie.title}
+                director={movie.director}
+                genre={movie.genre}
+                cast={`Cast: ${movie.cast || "Not available"}`}
+                movieImage={movie.photoUrl}
+              />
+            ))
+          ) : (
+            <p>No movies available for this category.</p>
+          )}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ export const getRecommendedContent = async (
   content_type = "movie",
   genre = null,
   shuffle = false,
-  avg_rating = 8.8
+  avg_rating = 8.5
 ) => {
   try {
     const genreQuery = genre ? `&genre=${genre}` : "";

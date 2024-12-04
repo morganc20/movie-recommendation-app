@@ -49,15 +49,24 @@ def get_recommendations(amount: int, content_type: str, shuffle: bool = False, g
     content_type is either "movie" or "tv_show".  
     genre is format "Documentary, Family" so the user can search for multiple genres.
     """
+
     content_docs = db.collection('content').where('avgRating', '>', avg_rating).where(
-        'type', '==', content_type).limit(amount).get()
+        'type', '==', content_type).get()
 
     if genre:
         genre_list = genre.split(', ')
-        content_docs = db.collection('content').where(
-            'type', '==', content_type).where('genre', 'in', genre_list).limit(amount).get()
+        filtered_docs = []
 
-    content_docs = list(content_docs)
+        for doc in content_docs:
+            doc_data = doc.to_dict()
+
+            if any(g.strip() in doc_data.get('genre', '') for g in genre_list):
+                filtered_docs.append(doc)
+
+        content_docs = filtered_docs
+
+    content_docs = content_docs[:amount]
+
     if shuffle:
         random.shuffle(content_docs)
 

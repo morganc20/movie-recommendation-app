@@ -87,12 +87,12 @@ def main():
         "https://api.themoviedb.org/3/tv/top_rated?language=en-US", 200)
 
     # Fetch IMDb IDs
-    imdb_movies_ids = [fetch_imdb_id_for_movie(
-        movie_id) for movie_id in top_movies_ids]
+    # imdb_movies_ids = [fetch_imdb_id_for_movie(
+    #     movie_id) for movie_id in top_movies_ids]
     imdb_tvshow_ids = [fetch_imdb_id_for_tv(tv_id) for tv_id in top_tvshow_ids]
 
     # Process OMDB details
-    for imdb_id in imdb_movies_ids + imdb_tvshow_ids:
+    for imdb_id in imdb_tvshow_ids:
         try:
             omdb_data = fetch_omdb_details(imdb_id)
             content = {
@@ -100,7 +100,7 @@ def main():
                 "director": omdb_data.get("Director", "Unknown"),
                 "releaseYear": int(omdb_data["Year"][:4]) if "Year" in omdb_data else 0,
                 "genre": omdb_data.get("Genre", "Unknown"),
-                "type": "movie" if imdb_id in imdb_movies_ids else "tv_show",
+                "type": "tv_show",
                 "synopsis": omdb_data.get("Plot", "No synopsis available."),
                 "avgRating": float(omdb_data.get("imdbRating", 0.0)),
                 "photoUrl": omdb_data.get("Poster", "")
