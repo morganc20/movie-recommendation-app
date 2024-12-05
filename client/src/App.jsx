@@ -21,6 +21,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Title from "./pages/Title.jsx";
 import Profile from "./pages/Profile.jsx";
 import CreateList from "./pages/CreateList.jsx";
+import List from "./pages/List.jsx";
 
 // Protected Route for authenticated users
 const PrivateRoute = ({ children }) => {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/animation" element={<Animation />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/createList" element={<CreateList />} />
+          <Route path="/list" element={<List />}/>
 
 
           {/* Private Routes - Requires Authentication */}
