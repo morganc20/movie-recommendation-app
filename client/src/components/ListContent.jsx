@@ -17,11 +17,15 @@ const ListContent = ({ studio, movieTitle, genre, movieCast, movies, listIndex }
 
   return (
     <div className="movie-titles-container">
+        <div className='list-number'>
+            <h2 className="movie-index">{listIndex}</h2>
+        </div>
+        
       <div className="list-thumbnail">
         <img src={movies[0]?.thumbnail || '../assets/test.jpg'} alt={movieTitle} className="thumbnail-image" />
       </div>
       <div className="movie-details">
-        <span className="movie-index">{listIndex}</span>
+        
         <p className="-movie-studio">{studio}</p>
         <h3 className="movie-title">{movieTitle}</h3>
         <p className="movie-genre">{genre}</p>
