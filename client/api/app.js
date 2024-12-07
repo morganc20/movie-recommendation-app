@@ -284,3 +284,18 @@ export const addContentToList = async (listId, contentId) => {
     throw error;
   }
 };
+
+export const createNewList = async (payload, token) => {
+  try {
+    console.log(token);
+    const response = await axios.post(`${BASE_URL}/lists`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating new list:", error);
+    throw error;
+  }
+};

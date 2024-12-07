@@ -26,6 +26,7 @@ const Movie = () => {
     "TV Shows",
     "Animation",
   ];
+  
 
   const fetchMovies = async (category) => {
     setLoading(true);

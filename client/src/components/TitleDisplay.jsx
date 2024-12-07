@@ -59,8 +59,8 @@ const TitleDisplay = ({
         </button>
         <ListDropdown
           buttonLabel="Add to List"
-          movie={movies.find((movie) => movie.title === title)} 
-          lists={lists} 
+          movie={movies.find((movie) => movie.title === title)}
+          lists={lists}
           buttonStyle={{ backgroundColor: "#f1dac4", color: "black" }}
           menuStyle={{ backgroundColor: "#f1dac4" }}
         />
