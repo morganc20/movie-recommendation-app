@@ -212,14 +212,12 @@ export const deleteList = async (listId) => {
   }
 };
 
-<<<<<<< HEAD
 export const getUserDetails = async (userId) => {
   try {
     const response = await axios.get(`${BASE_URL}/get-user-details/${userId}`);
     return response.data.data;
-  } catch (error) {
-    console.error(`Error fetching user details for ID ${userId}:`, error);
-=======
+  } catch (error) {console.error(`Error fetching user details for ID ${userId}:`, error)}
+};
 export const getTitleDetails = async (titleId) => {
   try {
     const response = await axios.get(`${BASE_URL}/content/${titleId}`);
@@ -229,12 +227,10 @@ export const getTitleDetails = async (titleId) => {
       `Error fetching details for title with ID ${titleId}:`,
       error
     );
->>>>>>> feature/dynamic-routes
     return null;
   }
 };
 
-<<<<<<< HEAD
 export const updateProfile = async (userId, updateData) => {
   try {
     const response = await axios.patch(
@@ -242,9 +238,8 @@ export const updateProfile = async (userId, updateData) => {
       updateData
     );
     return response.data;
-  } catch (error) {
-    console.error(`Error updating profile for user ${userId}:`, error);
-=======
+  } catch (error) {console.error(`Error updating profile for user ${userId}:`, error)}
+};
 export const getSimilarMoviesByGenre = async (genre, limit = 5) => {
   try {
     // /content/genre/{genre}/{amount}
@@ -277,7 +272,6 @@ export const addContentToList = async (listId, contentId) => {
     return response.data;
   } catch (error) {
     console.error("Error adding content to list:", error);
->>>>>>> feature/dynamic-routes
     throw error;
   }
 };
