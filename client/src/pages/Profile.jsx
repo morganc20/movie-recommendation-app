@@ -31,6 +31,7 @@ const Profile = () => {
   const handleSave = async (field) => {
     try {
       const updatedData = {};
+  const { logout } = useAuth(); // Access logout function
 
       if (field === "password") {
         updatedData.password = password;
@@ -49,6 +50,10 @@ const Profile = () => {
   };
 
   if (loading) return <div>Loading...</div>;
+  const handleLogout = () => {
+    logout();
+    window.location.href = "/login"; // Redirect to the login page
+  };
 
   return (
     <div className="forum">
@@ -165,7 +170,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <button className="logout-button">Logout</button>
+        <button className="logout-button" onClick={handleLogout}>
+          Log out
+        </button>
       </div>
     </div>
   );

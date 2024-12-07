@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import '../styles/Header.css';
 import Logo from '../assets/logo.svg';
 import ProfileIcon from '../assets/profile.svg';
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { logout } = useAuth(); // Access logout function
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -18,6 +20,11 @@ const Header = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    window.location.href = '/login'; // Redirect to the login page
+  };
+
   return (
     <div className="header-container">
       <img src={Logo} alt="Logo" className="logo" />
@@ -27,6 +34,16 @@ const Header = () => {
         <a href="/animation">Animation</a>
         <a href="/forum">Forum</a>
         <a href="/my-lists">My Lists</a>
+        <a
+          href="#"
+          className="logout-link"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLogout(); // Call logout function
+          }}
+        >
+          Log Out
+        </a>
       </nav>
       <img
         src={ProfileIcon}
@@ -40,12 +57,22 @@ const Header = () => {
           &times;
         </button>
         <nav className="sidebar-links">
-        <a href="/profile">Profile</a> 
-        <a href="/my-lists">My Lists</a>
+          <a href="/profile">Profile</a>
+          <a href="/my-lists">My Lists</a>
           <a href="/movie">Movies</a>
           <a href="/television">Television</a>
           <a href="/animation">Animation</a>
           <a href="/forum">Forum</a>
+          <a
+            href="#"
+            className="logout-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogout(); // Call logout function
+            }}
+          >
+            Log Out
+          </a>
         </nav>
       </div>
       <div

@@ -212,16 +212,29 @@ export const deleteList = async (listId) => {
   }
 };
 
+<<<<<<< HEAD
 export const getUserDetails = async (userId) => {
   try {
     const response = await axios.get(`${BASE_URL}/get-user-details/${userId}`);
     return response.data.data;
   } catch (error) {
     console.error(`Error fetching user details for ID ${userId}:`, error);
+=======
+export const getTitleDetails = async (titleId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/content/${titleId}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error fetching details for title with ID ${titleId}:`,
+      error
+    );
+>>>>>>> feature/dynamic-routes
     return null;
   }
 };
 
+<<<<<<< HEAD
 export const updateProfile = async (userId, updateData) => {
   try {
     const response = await axios.patch(
@@ -231,6 +244,40 @@ export const updateProfile = async (userId, updateData) => {
     return response.data;
   } catch (error) {
     console.error(`Error updating profile for user ${userId}:`, error);
+=======
+export const getSimilarMoviesByGenre = async (genre, limit = 5) => {
+  try {
+    // /content/genre/{genre}/{amount}
+    console.log(genre);
+    const response = await axios.get(
+      `${BASE_URL}/content/genre/${genre}/${limit}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching similar movies by genre "${genre}":`, error);
+    return [];
+  }
+};
+
+export const getUserLists = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/lists/${userId}/all`);
+    return response.data; // Return the array of lists
+  } catch (error) {
+    console.error("Error fetching user lists:", error);
+    return [];
+  }
+};
+
+export const addContentToList = async (listId, contentId) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/lists/${listId}/content/${contentId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding content to list:", error);
+>>>>>>> feature/dynamic-routes
     throw error;
   }
 };
