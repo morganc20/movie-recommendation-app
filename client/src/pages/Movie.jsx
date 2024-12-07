@@ -61,8 +61,8 @@ const Movie = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Media</h1>
-        <TopListsCarousel title="Browse Top content" />
+        <h1 className="forum-title">Movies</h1>
+        <TopListsCarousel title="Browse Top content" type="movie" />
         <Tabs
           categories={categories}
           onSelectCategory={handleCategorySelect}

@@ -58,7 +58,7 @@ const Television = () => {
       <Header />
       <div className="forum-content">
         <h1 className="forum-title">Television</h1>
-        <TopListsCarousel title="Browse Top content" />
+        <TopListsCarousel title="Browse Top content" type="tv_show" />
         <Tabs
           categories={categories}
           onSelectCategory={handleCategorySelect}
