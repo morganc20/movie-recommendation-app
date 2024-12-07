@@ -15,7 +15,7 @@ import JawsThumbnail from "../assets/test.jpg";
 import CaptainPhillipsThumbnail from "../assets/test.jpg";
 import AdriftThumbnail from "../assets/test.jpg";
 import ThrillerNightThumbnail from "../assets/test.jpg";
-import { getRecommendedContent } from "../../api/app";
+import { getRecommendedContent } from "../../api/mock";
 import AvengersThumbnail from '../assets/AvengersThumbnail.png';
 import ListContent from "../components/ListContent";
 

@@ -8,7 +8,7 @@ import {
   getTitleDetails,
   getSimilarMoviesByGenre,
   getUserLists,
-} from "../../api/app";
+} from "../../api/mock";
 import { useAuth } from "../context/AuthContext";
 
 const Title = () => {

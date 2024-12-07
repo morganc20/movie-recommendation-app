@@ -4,7 +4,7 @@ import TopListsCarousel from "../components/TopListsCarousel";
 import TitleDisplay from "../components/TitleDisplay";
 import Tabs from "../components/Tabs";
 import "../styles/Movie.css";
-import { getRecommendedContent, getUserLists } from "../../api/app";
+import { getRecommendedContent, getUserLists } from "../../api/mock";
 import { useAuth } from "../context/AuthContext";
 
 const Movie = () => {
