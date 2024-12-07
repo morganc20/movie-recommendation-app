@@ -1,0 +1,99 @@
+.movie-titles-container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #F1DAC4;
+    border-radius: 10px;
+    background-color: #1a1a2e;
+    color: #F1DAC4;
+    position: relative;
+  }
+  
+  .list-thumbnail {
+    margin-right: 15px;
+  }
+  
+  .thumbnail-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px; 
+    border: 2px solid #F1DAC4; 
+    object-fit: contain; 
+  }
+  
+  h2.movie-index {
+    margin: 10px;
+  }
+  
+  .movie-details {
+    flex-grow: 1;
+  }
+  
+  .movie-studio {
+    font-size: 0.9rem;
+    color: #b3a89e;
+    font-family: 'Georgia', serif;
+
+  }
+  
+  .movie-studio {
+    font-size: 1.3rem;
+    margin: 5px 0;
+    font-family: 'Georgia', serif;
+
+  }
+  
+  .movie-genre {
+    font-size: 0.9rem;
+    color: #b3a89e;
+    font-family: 'Georgia', serif;
+
+  }
+  
+  .cast-summary {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 5px;
+    font-family: 'Georgia', serif;
+
+  }
+  
+  .title-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .movie-index {
+    color: #3a3a5a;
+
+  }
+
+  .favorite-button,
+  .menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  .heart-icon.favorited {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px #ff4757);
+  }
+  
+  .menu-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+  }
+  
+  
