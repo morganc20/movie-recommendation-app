@@ -26,13 +26,20 @@ const Animation = () => {
   const fetchMovies = async (category) => {
     setLoading(true);
     setError(null);
-
+    console.log("Fetching movies for category:", category);
     try {
       let data;
       if (category === "Recommended") {
         data = await getRecommendedContent(50, "both", null, false, 5, true);
       } else if (categories.includes(category)) {
-        data = await getRecommendedContent(50, "both", category, false, 5, true);
+        data = await getRecommendedContent(
+          50,
+          "both",
+          category,
+          false,
+          5,
+          true
+        );
       } else {
         data = [];
       }
