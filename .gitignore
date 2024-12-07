@@ -8,3 +8,4 @@ __pycache__/
 
 #ignore all files in project that end with .env
 **/.env
+node_modules/
