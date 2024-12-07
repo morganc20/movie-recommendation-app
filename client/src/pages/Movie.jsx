@@ -6,7 +6,7 @@ import SortSidebar from "../components/SortSidebar";
 import TitleDisplay from "../components/TitleDisplay";
 import Tabs from "../components/Tabs";
 import "../styles/Movie.css";
-import { getRecommendedContent } from "../../api/app";
+import { getRecommendedContent } from "../../api/mock";
 
 const Movie = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");

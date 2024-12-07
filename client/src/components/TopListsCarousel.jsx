@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "../styles/TopListsCarousel.css";
-import { getRecommendedContent } from "../../api/app.js";
+import { getRecommendedContent } from "../../api/mock.js";
 
 const TopListsCarousel = ({ title }) => {
   const [movies, setMovies] = useState([]);
