@@ -37,31 +37,74 @@ def clear_all_content():
 
 def get_all_content():
     """
-    Get all content. 
+    Get all content.
     """
     content_docs = db.collection('content').get()
     return [doc.to_dict() for doc in content_docs]
 
 
-def get_recommendations(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
+def get_animated_recommendations(amount: int, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
     """
-    Get content recommendations. Amount is the number of recommendations to return.
-    content_type is either "movie" or "tv_show".  
-    genre is format "Documentary, Family" so the user can search for multiple genres.
+    Get recommendations for animated content.
     """
-    content_docs = db.collection('content').where('avgRating', '>', avg_rating).where(
-        'type', '==', content_type).limit(amount).get()
+    all_docs = db.collection('content').where(
+        'avgRating', '>', avg_rating).get()
+
+    animated_docs = [
+        doc for doc in all_docs if 'Animation' in doc.to_dict().get('genre', '')]
 
     if genre:
         genre_list = genre.split(', ')
-        content_docs = db.collection('content').where(
-            'type', '==', content_type).where('genre', 'in', genre_list).limit(amount).get()
+        filtered_docs = []
 
-    content_docs = list(content_docs)
+        for doc in animated_docs:
+            doc_data = doc.to_dict()
+
+            if any(g.strip() in doc_data.get('genre', '') for g in genre_list):
+                filtered_docs.append(doc)
+
+        animated_docs = filtered_docs
+
+    animated_docs = animated_docs[:amount]
+
+    if shuffle:
+        random.shuffle(animated_docs)
+
+    return [{**doc.to_dict(), 'contentID': doc.id} for doc in animated_docs]
+
+
+def get_recommendations(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
+    """
+    Get content recommendations. Amount is the number of recommendations to return.
+    content_type is either "movie" or "tv_show".
+    genre is format "Documentary, Family" so the user can search for multiple genres.
+    """
+
+    content_docs = db.collection('content').where('avgRating', '>', avg_rating).where(
+        'type', '==', content_type).get()
+
+    if content_type == "both":
+        content_docs = db.collection('content').where(
+            'avgRating', '>', avg_rating).get()
+
+    if genre:
+        genre_list = genre.split(', ')
+        filtered_docs = []
+
+        for doc in content_docs:
+            doc_data = doc.to_dict()
+
+            if any(g.strip() in doc_data.get('genre', '') for g in genre_list):
+                filtered_docs.append(doc)
+
+        content_docs = filtered_docs
+
+    content_docs = content_docs[:amount]
+
     if shuffle:
         random.shuffle(content_docs)
 
-    return [doc.to_dict() for doc in content_docs]
+    return [{**doc.to_dict(), 'contentID': doc.id} for doc in content_docs]
 
 
 def get_content_by_id(content_id: str):
@@ -72,9 +115,10 @@ def get_content_by_id(content_id: str):
     if not content_doc.exists:
         raise HTTPException(status_code=404, detail="Content not found")
 
-    # Add content but also include the content ID
     return {**content_doc.to_dict(), "contentId": content_id}
 
+    # Add content but also include the content ID
+    return {**content_doc.to_dict(), "contentId": content_id}
 
 def get_content_by_genre(genre: str, amount: int):
     """

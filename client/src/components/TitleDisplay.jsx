@@ -2,9 +2,20 @@ import React, { useState } from "react";
 import "../Styles/TitleDisplay.css";
 import HeartIcon from "../assets/heart.svg";
 import ListDropdown from "../components/ListDropdown.jsx";
+import { useNavigate } from "react-router-dom";
 
-const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
+const TitleDisplay = ({
+  title,
+  director,
+  genre,
+  cast,
+  movieImage,
+  movies,
+  lists,
+  contentID,
+}) => {
   const [favorites, setFavorites] = useState({});
+  const navigate = useNavigate();
 
   // Toggle favorite status
   const toggleFavorite = (movieId) => {
@@ -14,6 +25,10 @@ const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
     }));
   };
 
+  const handleImageClick = (contentID) => {
+    navigate(`/title/${contentID}`);
+  };
+
   return (
     <div className="movie-list-container">
       <div className="list-thumbnail">
@@ -21,12 +36,15 @@ const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
           src={movieImage || "../assets/test.jpg"}
           alt={title}
           className="thumbnail-image"
+          onClick={() => handleImageClick(contentID)}
+          style={{ cursor: "pointer" }}
         />
       </div>
       <div className="list-details">
         <p className="list-director">{director}</p>
         <h3 className="list-title">{title}</h3>
         <p className="list-genre">{genre}</p>
+        <p className="list-cast">{cast}</p>
       </div>
       <div className="list-actions">
         <button
@@ -41,11 +59,8 @@ const TitleDisplay = ({ title, director, genre, cast, movieImage }) => {
         </button>
         <ListDropdown
           buttonLabel="Add to List"
-          options={[
-            { label: "Add to Space Wizards", href: "#a" },
-            { label: "Add to Nostalgia", href: "#b" },
-            { label: "Create New List" },
-          ]}
+          movie={movies.find((movie) => movie.title === title)}
+          lists={lists}
           buttonStyle={{ backgroundColor: "#f1dac4", color: "black" }}
           menuStyle={{ backgroundColor: "#f1dac4" }}
         />

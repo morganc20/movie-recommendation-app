@@ -100,7 +100,7 @@ def main():
                 "director": omdb_data.get("Director", "Unknown"),
                 "releaseYear": int(omdb_data["Year"][:4]) if "Year" in omdb_data else 0,
                 "genre": omdb_data.get("Genre", "Unknown"),
-                "type": "movie" if imdb_id in imdb_movies_ids else "tv_show",
+                "type": "movie" if "movie" in omdb_data["Type"].lower() else "tv_show",
                 "synopsis": omdb_data.get("Plot", "No synopsis available."),
                 "avgRating": float(omdb_data.get("imdbRating", 0.0)),
                 "photoUrl": omdb_data.get("Poster", "")

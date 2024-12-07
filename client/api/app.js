@@ -20,15 +20,18 @@ export const getRecommendedContent = async (
   content_type = "movie",
   genre = null,
   shuffle = false,
-  avg_rating = 8.8
+  avg_rating = 8.5,
+  is_animated = false
 ) => {
   try {
     const genreQuery = genre ? `&genre=${genre}` : "";
     const shuffleQuery = shuffle ? `&shuffle=${shuffle}` : "";
     const ratingQuery = `&avg_rating=${avg_rating}`;
-
+    const animatedQuery = is_animated
+      ? `animated/recommendations`
+      : "recommendations";
     const response = await axios.get(
-      `${BASE_URL}/content/recommendations/${amount}?content_type=${content_type}${shuffleQuery}${genreQuery}${ratingQuery}`
+      `${BASE_URL}/content/${animatedQuery}/${amount}?content_type=${content_type}${shuffleQuery}${genreQuery}${ratingQuery}`
     );
 
     return response.data;
@@ -223,11 +226,7 @@ export const getTitleDetails = async (titleId) => {
     const response = await axios.get(`${BASE_URL}/content/${titleId}`);
     return response.data;
   } catch (error) {
-    console.error(
-      `Error fetching details for title with ID ${titleId}:`,
-      error
-    );
-    return null;
+    console.error(`Error fetching user details for ID ${userId}:`, error);
   }
 };
 
@@ -240,6 +239,17 @@ export const updateProfile = async (userId, updateData) => {
     return response.data;
   } catch (error) {console.error(`Error updating profile for user ${userId}:`, error)}
 };
+
+export const getUserLists = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/lists/${userId}/all`);
+    return response.data; // Return the array of lists
+  } catch (error) {
+    console.error("Error fetching user lists:", error);
+    return [];
+  }
+};
+
 export const getSimilarMoviesByGenre = async (genre, limit = 5) => {
   try {
     // /content/genre/{genre}/{amount}
@@ -254,16 +264,6 @@ export const getSimilarMoviesByGenre = async (genre, limit = 5) => {
   }
 };
 
-export const getUserLists = async (userId) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/lists/${userId}/all`);
-    return response.data; // Return the array of lists
-  } catch (error) {
-    console.error("Error fetching user lists:", error);
-    return [];
-  }
-};
-
 export const addContentToList = async (listId, contentId) => {
   try {
     const response = await axios.post(
@@ -272,6 +272,21 @@ export const addContentToList = async (listId, contentId) => {
     return response.data;
   } catch (error) {
     console.error("Error adding content to list:", error);
+    throw error;
+  }
+};
+
+export const createNewList = async (payload, token) => {
+  try {
+    console.log(token);
+    const response = await axios.post(`${BASE_URL}/lists`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating new list:", error);
     throw error;
   }
 };

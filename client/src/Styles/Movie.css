@@ -7,7 +7,7 @@
 
 .forum-title {
   text-align: center;
-  font-size: 80px; /* Quick Fix: Use this to increase the heading size*/
+  font-size: 80px;
   color: #f1dac4;
   margin-top: 20px;
   font-family: "Georgia", serif;
@@ -17,8 +17,8 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
-
 .section-title {
   font-size: 1.5rem;
   color: #f1dac4;
@@ -26,28 +26,26 @@
   text-align: center;
   font-family: "Georgia", serif;
 }
-
 .movie-lists p {
   font-size: 16px;
   color: #888;
   text-align: center;
   margin-top: 20px;
 }
-
 .top-lists {
   margin-top: 20px;
 }
-
 .main-content {
   display: flex;
   margin-top: 20px;
 }
 
 .movie-lists {
-  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .filter-button {

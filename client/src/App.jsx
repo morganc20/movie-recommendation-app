@@ -55,20 +55,15 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/title/:titleId" element={<Title />} />
-          <Route path="/movie" element={<Movie />} />
+          {/* <Route path="/movie" element={<Movie />} /> */}
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/createList" element={<CreateList />} />
-          <Route path="/list" element={<List />}/>
-
-          {/* Private Routes - Requires Authentication */}
           <Route
             path="/"
             element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
+            <Movie />
             }
           />
           <Route

@@ -25,11 +25,14 @@ const Header = () => {
     window.location.href = '/login'; // Redirect to the login page
   };
 
+  const handleLogoClick = () => {
+    window.location.href = '/';
+  }
+
   return (
     <div className="header-container">
-      <img src={Logo} alt="Logo" className="logo" />
+      <img src={Logo} alt="Logo" className="logo" onClick={handleLogoClick} />
       <nav className="nav-links">
-        <a href="/movie">Movies</a>
         <a href="/television">Television</a>
         <a href="/animation">Animation</a>
         <a href="/forum">Forum</a>
@@ -59,7 +62,6 @@ const Header = () => {
         <nav className="sidebar-links">
           <a href="/profile">Profile</a>
           <a href="/my-lists">My Lists</a>
-          <a href="/movie">Movies</a>
           <a href="/television">Television</a>
           <a href="/animation">Animation</a>
           <a href="/forum">Forum</a>

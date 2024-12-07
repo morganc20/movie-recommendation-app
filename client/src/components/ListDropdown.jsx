@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/ListDropdown.css";
 import { addContentToList } from "../../api/app.js";
+import CreateListModal from "./CreateListModal";
 
 const ListDropdown = ({
   buttonLabel,
@@ -8,8 +9,10 @@ const ListDropdown = ({
   lists,
   buttonStyle,
   menuStyle,
+  onListCreated = () => {},
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -25,6 +28,15 @@ const ListDropdown = ({
       console.error("Error adding movie to list:", error);
       alert("Failed to add movie to list.");
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setIsOpen(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -50,9 +62,16 @@ const ListDropdown = ({
               {name}
             </a>
           ))}
-          <a href="#create-new-list">Create New List</a>
+          <a href="#" onClick={openModal}>
+            Create New List
+          </a>
         </div>
       )}
+      <CreateListModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onListCreated={onListCreated}
+      />
     </div>
   );
 };
