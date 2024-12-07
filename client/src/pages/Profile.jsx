@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { getUserDetails, updateProfile } from "../../api/app.js";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,7 +31,6 @@ const Profile = () => {
   const handleSave = async (field) => {
     try {
       const updatedData = {};
-  const { logout } = useAuth(); // Access logout function
 
       if (field === "password") {
         updatedData.password = password;
