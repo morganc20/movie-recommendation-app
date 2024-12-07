@@ -6,7 +6,6 @@ import MovieTitle from "../components/MovieTitle";
 import "../styles/Title.css";
 import {
   getTitleDetails,
-  getRecommendedContent,
   getSimilarMoviesByGenre,
   getUserLists,
 } from "../../api/app";
@@ -67,7 +66,7 @@ const Title = () => {
     avgRating,
     synopsis,
     photoUrl,
-    contentId,
+    contentID,
   } = movieDetails;
 
   return (
@@ -111,6 +110,7 @@ const Title = () => {
               director={movie.director}
               movies={[movie]}
               lists={userLists}
+              contentID={movie.contentId}
             />
           ))}
         </div>

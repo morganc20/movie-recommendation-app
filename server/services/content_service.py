@@ -37,7 +37,7 @@ def clear_all_content():
 
 def get_all_content():
     """
-    Get all content. 
+    Get all content.
     """
     content_docs = db.collection('content').get()
     return [doc.to_dict() for doc in content_docs]
@@ -70,13 +70,13 @@ def get_animated_recommendations(amount: int, shuffle: bool = False, genre: str 
     if shuffle:
         random.shuffle(animated_docs)
 
-    return [doc.to_dict() for doc in animated_docs]
+    return [{**doc.to_dict(), 'contentID': doc.id} for doc in animated_docs]
 
 
 def get_recommendations(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
     """
     Get content recommendations. Amount is the number of recommendations to return.
-    content_type is either "movie" or "tv_show".  
+    content_type is either "movie" or "tv_show".
     genre is format "Documentary, Family" so the user can search for multiple genres.
     """
 
@@ -104,7 +104,7 @@ def get_recommendations(amount: int, content_type: str, shuffle: bool = False, g
     if shuffle:
         random.shuffle(content_docs)
 
-    return [doc.to_dict() for doc in content_docs]
+    return [{**doc.to_dict(), 'contentID': doc.id} for doc in content_docs]
 
 
 def get_content_by_id(content_id: str):
@@ -115,7 +115,6 @@ def get_content_by_id(content_id: str):
     if not content_doc.exists:
         raise HTTPException(status_code=404, detail="Content not found")
 
-    # Add content but also include the content ID
     return {**content_doc.to_dict(), "contentId": content_id}
 
 

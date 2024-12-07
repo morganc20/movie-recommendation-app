@@ -4,13 +4,16 @@ import TopListsCarousel from "../components/TopListsCarousel";
 import TitleDisplay from "../components/TitleDisplay";
 import Tabs from "../components/Tabs";
 import "../styles/Movie.css";
-import { getRecommendedContent } from "../../api/app";
+import { getRecommendedContent, getUserLists } from "../../api/app";
+import { useAuth } from "../context/AuthContext";
 
 const Animation = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [userLists, setUserLists] = useState([]);
+  const { user } = useAuth();
 
   const categories = [
     "Recommended",
@@ -22,6 +25,21 @@ const Animation = () => {
     "Horror",
     "TV Shows",
   ];
+
+  useEffect(() => {
+    const fetchUserLists = async () => {
+      if (user?.userId) {
+        try {
+          const lists = await getUserLists(user.userId);
+          setUserLists(lists);
+        } catch (error) {
+          console.error("Error fetching user lists:", error);
+        }
+      }
+    };
+
+    fetchUserLists();
+  }, [user]);
 
   const fetchMovies = async (category) => {
     setLoading(true);
@@ -65,7 +83,7 @@ const Animation = () => {
       <Header />
       <div className="forum-content">
         <h1 className="forum-title">Animation</h1>
-        <TopListsCarousel title="Browse Top content" type="movie" />
+        <TopListsCarousel title="Browse Top content" type="both" />
         <Tabs
           categories={categories}
           onSelectCategory={handleCategorySelect}
@@ -86,6 +104,9 @@ const Animation = () => {
                 genre={movie.genre}
                 cast={`Cast: ${movie.cast || "Not available"}`}
                 movieImage={movie.photoUrl}
+                movies={movies}
+                lists={userLists}
+                contentID={movie.contentID}
               />
             ))
           ) : (

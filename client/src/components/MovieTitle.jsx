@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import "../styles/MovieTitle.css";
 import HeartIcon from "../assets/heart.svg";
 import MenuDotsIcon from "../assets/white-menu-dots.jpg";
+import { useNavigate } from "react-router-dom";
 import ListDropdown from "../components/ListDropdown.jsx";
 
-const MovieTitle = ({ studio, movieTitle, genre, director, movies, lists }) => {
+const MovieTitle = ({
+  studio,
+  movieTitle,
+  genre,
+  director,
+  movies,
+  lists,
+  contentID,
+}) => {
   const [favorites, setFavorites] = useState({});
+  const navigate = useNavigate();
 
   // Toggle favorite status
   const toggleFavorite = (movieId) => {
@@ -15,6 +25,10 @@ const MovieTitle = ({ studio, movieTitle, genre, director, movies, lists }) => {
     }));
   };
 
+  const handleImageClick = (contentID) => {
+    navigate(`/title/${contentID}`);
+  };
+
   return (
     <div className="movie-titles-container">
       <div className="list-thumbnail">
@@ -22,6 +36,8 @@ const MovieTitle = ({ studio, movieTitle, genre, director, movies, lists }) => {
           src={movies[0].photoUrl || "../assets/test.jpg"}
           alt={movieTitle}
           className="thumbnail-image"
+          onClick={() => handleImageClick(contentID)}
+          style={{ cursor: "pointer" }}
         />
       </div>
       <div className="movie-details">
@@ -53,7 +69,7 @@ const MovieTitle = ({ studio, movieTitle, genre, director, movies, lists }) => {
         /> */}
         <ListDropdown
           buttonLabel="Add to List"
-          movie={movies[0]} // Pass the movie object
+          movie={movies[0]} 
           buttonStyle={{ backgroundColor: "#f1dac4", color: "black" }}
           menuStyle={{ backgroundColor: "#f1dac4" }}
           lists={lists}

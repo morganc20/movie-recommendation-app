@@ -4,13 +4,16 @@ import TopListsCarousel from "../components/TopListsCarousel";
 import TitleDisplay from "../components/TitleDisplay";
 import Tabs from "../components/Tabs";
 import "../styles/Movie.css";
-import { getRecommendedContent } from "../../api/app";
+import { getRecommendedContent, getUserLists } from "../../api/app";
+import { useAuth } from "../context/AuthContext";
 
 const Movie = () => {
   const [selectedCategory, setSelectedCategory] = useState("Recommended");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [userLists, setUserLists] = useState([]);
+  const { user } = useAuth();
 
   const categories = [
     "Recommended",
@@ -49,6 +52,21 @@ const Movie = () => {
   };
 
   useEffect(() => {
+    const fetchUserLists = async () => {
+      if (user?.userId) {
+        try {
+          const lists = await getUserLists(user.userId);
+          setUserLists(lists);
+        } catch (error) {
+          console.error("Error fetching user lists:", error);
+        }
+      }
+    };
+
+    fetchUserLists();
+  }, [user]);
+
+  useEffect(() => {
     fetchMovies(selectedCategory);
   }, [selectedCategory]);
 
@@ -81,6 +99,9 @@ const Movie = () => {
                 genre={movie.genre}
                 cast={`Cast: ${movie.cast || "Not available"}`}
                 movieImage={movie.photoUrl}
+                movies={movies}
+                lists={userLists}
+                contentID={movie.contentID}
               />
             ))
           ) : (
