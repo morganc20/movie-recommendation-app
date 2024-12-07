@@ -65,9 +65,16 @@ const List = () => {
   return (
     <div className="m-title">
       <Header />
-      <TopListsCarousel />
+      
       <div className="content-wrapper">
-        <div className="details-wrapper">
+        
+       
+        
+        <div className="main-content">
+          
+        </div> 
+      <div className="list-container">
+      <div className="details-wrapper">
             <aside className="details-sidebar">
                 <h2>user34345</h2>
                 <h1>90's Babies' Nostalgia Trip</h1>
@@ -90,14 +97,13 @@ const List = () => {
                 <button className="report-button">Report List</button>
                 
             </aside> 
+            <TopListsCarousel />
 
             </div>
 
         </div>
-       
-        
-        <div className="main-content">
-          <div className="movie-lists">
+        <h3>90's Babies' Nostalgia Trip</h3>
+        <div className="movie-lists">
             <h2>List Titles</h2>
             <ListContent
               listIndex="1"
@@ -125,49 +131,7 @@ const List = () => {
             />
             
           </div>
-        </div>
-        
-      <TopListsCarousel />  
-      <div className="list-container">
-        <h3>90's Babies' Nostalgia Trip</h3>
-        <p className="subtitle">58 titles - 200 voters</p>
-        <button className="report-button">Report List</button>
-        <p className="description">
-          I love rewatching all the shows I used to watch as a kid! Add any shows
-          you think I missed that fit the vibe! :)
-        </p>
-        <button className="rate-button">Rate this List ▼</button>
-
-        <div className="item">
-          <span className="rank">1</span>
-          <img src="batman.jpg" alt="Batman: The Animated Series" />
-          <div className="info">
-            <h4>Batman: The Animated Series</h4>
-            <button className="add-button">Add to List ▼</button>
-            <p>150 votes</p>
           </div>
-        </div>
-
-        <div className="item">
-          <span className="rank">2</span>
-          <img src="dragon-booster.jpg" alt="Dragon Booster" />
-          <div className="info">
-            <h4>Dragon Booster</h4>
-            <button className="add-button">Add to List ▼</button>
-            <p>35 votes</p>
-          </div>
-        </div>
-
-        <div className="item">
-          <span className="rank">3</span>
-          <img src="avatar.jpg" alt="Avatar: The Last Airbender" />
-          <div className="info">
-            <h4>Avatar: The Last Airbender</h4>
-            <button className="add-button">Add to List ▼</button>
-            <p>200 votes</p>
-          </div>
-        </div>
-      </div>
     
       
     </div>
