@@ -247,3 +247,16 @@ def delete_list_by_id(list_id: str):
 
     list_ref.delete()
     return {"message": "List deleted successfully"}
+
+
+def get_list_from_userid(user_id: str):
+    '''
+    Get all lists for a user by userId. also append the listId to each list.
+    '''
+    list_docs = db.collection('lists').where('userId', '==', user_id).get()
+    lists = []
+    for doc in list_docs:
+        list_data = doc.to_dict()
+        list_data['listId'] = doc.id
+        lists.append(list_data)
+    return lists

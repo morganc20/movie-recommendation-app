@@ -80,15 +80,44 @@ def get_content_by_id(content_id: str):
     content_doc = db.collection('content').document(content_id).get()
     if not content_doc.exists:
         raise HTTPException(status_code=404, detail="Content not found")
-    return content_doc.to_dict()
+
+    # Add content but also include the content ID
+    return {**content_doc.to_dict(), "contentId": content_id}
 
 
-def get_content_by_genre(genre: str):
+def get_content_by_genre(genre: str, amount: int):
     """
-    Get content by genre.
+    Get content by genre, sort by avgRating (highest to lowest), and filter out duplicates
+    by comparing name and avgRating.
     """
-    content_docs = db.collection('content').where('genre', '==', genre).get()
-    return [doc.to_dict() for doc in content_docs]
+    genre_list = [g.strip() for g in genre.split(',')]
+
+    content_docs = db.collection('content').where(
+        'genre', 'in', genre_list).get()
+
+    sorted_docs = sorted(
+        [doc.to_dict() for doc in content_docs],
+        # Default avgRating to 0 if missing
+        key=lambda x: x.get('avgRating', 0),
+        reverse=True
+    )
+
+    unique_contents = []
+    seen_entries = set()
+    for content in sorted_docs:
+        name = content.get('name', '').strip()
+        avg_rating = content.get('avgRating', 0)
+
+        entry_key = (name, avg_rating)
+        if entry_key not in seen_entries:
+            seen_entries.add(entry_key)
+            unique_contents.append(content)
+
+    for content in unique_contents:
+        content['contentId'] = db.collection('content').where(
+            'title', '==', content['title']).get()[0].id
+
+    return unique_contents[:amount]
 
 
 def get_content_by_title(title: str):

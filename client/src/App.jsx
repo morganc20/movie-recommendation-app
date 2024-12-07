@@ -53,13 +53,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forum" element={<Forum />} />
-          <Route path="/title" element={<Title />} />
+          <Route path="/title/:titleId" element={<Title />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/television" element={<Television />} />
           <Route path="/animation" element={<Animation />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/CreateList" element={<CreateList />} />
-
+          <Route path="/createList" element={<CreateList />} />
 
           {/* Private Routes - Requires Authentication */}
           <Route
@@ -95,7 +94,7 @@ function App() {
             }
           /> */}
 
-            {/* <Route
+          {/* <Route
             path="/CreateList"
             element={
               <PrivateRoute>

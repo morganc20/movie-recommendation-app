@@ -7,7 +7,7 @@ from model.list import ListCreate
 from model.users import User
 from services.list_service import (
     create_list, get_list, add_content_to_list, remove_content_from_list,
-    toggle_private, give_rating_to_list, update_rating, get_all_lists_from_rating, get_average_rating, get_all_list, edit_list_by_id_admin,
+    toggle_private, give_rating_to_list, get_list_from_userid,  update_rating, get_all_lists_from_rating, get_average_rating, get_all_list, edit_list_by_id_admin,
     delete_list_by_id)
 from utils.security import get_current_user
 
@@ -30,6 +30,14 @@ async def get_user_lists(username: str):
     return get_list(username)
 
 
+@router.get("/lists/{user_id}/all")
+async def get_user_lists_by_userid(user_id: str):
+    """
+    Get all lists for a user by userId.
+    """
+    return get_list_from_userid(user_id)
+
+
 @router.get("/lists")
 async def get_all_lists():
     """
@@ -50,7 +58,7 @@ async def edit_list(list_id: str,
 
 
 @router.post("/lists/{list_id}/content/{content_id}")
-async def add_content_to_existing_list(list_id: str, content_id: str, current_user: User = Depends(get_current_user)):
+async def add_content_to_existing_list(list_id: str, content_id: str):
     """
     Add a content item to a list.
     """

@@ -53,12 +53,12 @@ async def get_content(content_id: str):
     return get_content_by_id(content_id)
 
 
-@router.get("/content/genre/{genre}")
-async def get_content_by_genre_route(genre: str):
+@router.get("/content/genre/{genre}/{amount}")
+async def get_content_by_genre_route(genre: str, amount: int):
     """
     Get content by genre.
     """
-    return get_content_by_genre(genre)
+    return get_content_by_genre(genre, amount)
 
 
 @router.get("/content/title/{title}")
