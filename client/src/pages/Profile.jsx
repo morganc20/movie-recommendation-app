@@ -3,7 +3,8 @@ import Header from "../components/Header";
 import "../styles/Profile.css";
 import ProfilePhoto from "../assets/profile.svg";
 import { useAuth } from "../context/AuthContext";
-import { getUserDetails, updateProfile } from "../../api/app.js";
+import { getUserDetails } from "../../api/mock.js";
+import { updateProfile } from "../../api/app.js";
 
 const Profile = () => {
   const { user, logout } = useAuth();

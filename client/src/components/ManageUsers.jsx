@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import { getAllUsers, updateUserDetails, deleteUser } from "../../api/app.js";
+import { updateUserDetails, deleteUser } from "../../api/app.js";
+import { getAllUsers } from "../../api/mock.js";
 import "../Styles/ManageUsers.css";
 
 const ManageUsers = () => {

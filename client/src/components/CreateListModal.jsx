@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/CreateListModal.css";
-import { createNewList } from "../../api/mock";
+import { createNewList } from "../../api/app";
 import { useAuth } from "../context/AuthContext";
 
 const CreateListModal = ({ isOpen, onClose, onListCreated }) => {

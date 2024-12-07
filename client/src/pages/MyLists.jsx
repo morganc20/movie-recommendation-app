@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import TopListsCarousel from "../components/TopListsCarousel";
 import TitleDisplay from "../components/TitleDisplay";
 import "../styles/MyLists.css";
-import { getMyLists } from "../../api/app.js";
+import { getMyLists } from "../../api/mock.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const MyLists = () => {

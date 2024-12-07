@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import "../Styles/ManageLists.css";
-import { getAllLists, updateList, deleteList } from "../../api/app.js";
+import { getAllLists } from "../../api/mock.js";
+import { updateList, deleteList } from "../../api/app.js";
 
 const ManageLists = () => {
   const [lists, setLists] = useState([]);
