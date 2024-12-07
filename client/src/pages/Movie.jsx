@@ -20,7 +20,6 @@ const Movie = () => {
     "Thriller",
     "Sci-Fi",
     "Horror",
-    "More",
     "TV Shows",
     "Animation",
   ];
