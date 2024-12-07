@@ -20,15 +20,17 @@ export const getRecommendedContent = async (
   content_type = "movie",
   genre = null,
   shuffle = false,
-  avg_rating = 8.5
+  avg_rating = 8.5,
+  is_animated = false
 ) => {
   try {
     const genreQuery = genre ? `&genre=${genre}` : "";
     const shuffleQuery = shuffle ? `&shuffle=${shuffle}` : "";
     const ratingQuery = `&avg_rating=${avg_rating}`;
+    const animatedQuery = is_animated ? `animated/recommendations` : "recommendations";
 
     const response = await axios.get(
-      `${BASE_URL}/content/recommendations/${amount}?content_type=${content_type}${shuffleQuery}${genreQuery}${ratingQuery}`
+      `${BASE_URL}/content/${animatedQuery}/${amount}?content_type=${content_type}${shuffleQuery}${genreQuery}${ratingQuery}`
     );
 
     return response.data;

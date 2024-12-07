@@ -42,6 +42,35 @@ def get_all_content():
     content_docs = db.collection('content').get()
     return [doc.to_dict() for doc in content_docs]
 
+def get_animated_recommendations(amount: int, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
+    """
+    Get recommendations for animated content.
+    """
+    all_docs = db.collection('content').where('avgRating', '>', avg_rating).get()
+
+    
+    animated_docs = [doc for doc in all_docs if 'Animation' in doc.to_dict().get('genre', '')]
+    return [doc.to_dict() for doc in animated_docs]
+
+    # if genre:
+    #     genre_list = genre.split(', ')
+    #     filtered_docs = []
+
+      
+    #     for doc in animated_docs:
+    #         doc_data = doc.to_dict()
+
+    #         if any(g.strip() in doc_data.get('genre', '') for g in genre_list):
+    #             filtered_docs.append(doc)
+
+    #     animated_docs = filtered_docs
+  
+    # animated_docs = animated_docs[:amount]
+
+    # if shuffle:
+    #     random.shuffle(animated_docs)
+
+    # return [doc.to_dict() for doc in animated_docs]
 
 def get_recommendations(amount: int, content_type: str, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
     """
@@ -52,6 +81,9 @@ def get_recommendations(amount: int, content_type: str, shuffle: bool = False, g
 
     content_docs = db.collection('content').where('avgRating', '>', avg_rating).where(
         'type', '==', content_type).get()
+    
+    if content_type == "both":
+        content_docs = db.collection('content').where('avgRating', '>', avg_rating).get()
 
     if genre:
         genre_list = genre.split(', ')

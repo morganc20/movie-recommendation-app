@@ -6,7 +6,8 @@ from model.content import ContentCreate
 from services.content_service import (
     add_content, get_content_by_id, get_content_by_genre, get_content_by_title,
     get_content_by_director, get_content_by_release_year, get_content_by_type,
-    edit_content_by_id, remove_content_by_id, get_all_content, clear_all_content, get_recommendations
+    edit_content_by_id, remove_content_by_id, get_all_content, clear_all_content, 
+    get_recommendations, get_animated_recommendations
 )
 
 
@@ -36,6 +37,12 @@ async def get_recommendations_route(amount: int, content_type: str, shuffle: boo
     """
     return get_recommendations(amount, content_type, shuffle, genre, avg_rating)
 
+@router.get("/content/animated/recommendations/{amount}")
+async def get_animated_recommendations_route(amount: int, shuffle: bool = False, genre: str = None, avg_rating: float = 8.8):
+    """
+    Get content recommendations.
+    """
+    return get_animated_recommendations(amount, shuffle, genre, avg_rating)
 
 @router.delete("/content")
 async def clear_allcontent():

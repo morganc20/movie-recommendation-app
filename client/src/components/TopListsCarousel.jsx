@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "../styles/TopListsCarousel.css";
 import { getRecommendedContent } from "../../api/app.js";
 
-const TopListsCarousel = ({ title }) => {
+const TopListsCarousel = ({ title, type }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ const TopListsCarousel = ({ title }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRecommendedContent(10, "movie");
+        const data = await getRecommendedContent(10, `${type}`, null, false, 8.5);
         console.log(data);
         setMovies(data);
         setLoading(false);

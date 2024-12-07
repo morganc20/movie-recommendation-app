@@ -20,7 +20,6 @@ const Movie = () => {
     "Thriller",
     "Sci-Fi",
     "Horror",
-    "More",
     "TV Shows",
     "Animation",
   ];
@@ -61,8 +60,7 @@ const Movie = () => {
     <div className="forum">
       <Header />
       <div className="forum-content">
-        <h1 className="forum-title">Media</h1>
-        <TopListsCarousel title="Browse Top content" />
+        <TopListsCarousel title="Browse Top content" type="movie" />
         <Tabs
           categories={categories}
           onSelectCategory={handleCategorySelect}
