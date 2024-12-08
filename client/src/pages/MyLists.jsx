@@ -10,46 +10,30 @@ const MyLists = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMyLists = async () => {
-      if (!user || !user.userId) {
-        console.warn("User not logged in or userId missing");
-        return;
-      }
+  try {
+    data = await getRecommendedContent(50, "movie", category, false, 5);
+    setMyLists(data);
+    setLoading(false);
+  } catch (err) {
+    setError("Failed to load movies");
+    setLoading(false);
+  }
+};
 
+useEffect(() => {
+  const fetchUserLists = async () => {
+    if (user?.userId) {
       try {
-        const dummyLists = [
-          {
-            id: 1,
-            title: "90's Babies' Nostalgia Trip",
-            description:
-              "I love rewatching all the shows I used to watch as a kid! Add any shows you think I missed that fit the vibe! :)",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 2,
-            title: "Romantic Evenings",
-            description:
-              "A curated list of my favorite romantic movies to watch on special nights!",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 3,
-            title: "Action-Packed Adventures",
-            description:
-              "For adrenaline junkies and action enthusiasts, this is the ultimate list of thrill rides.",
-            movieImage: "https://via.placeholder.com/150",
-          },
-        ];
-        setMyLists(dummyLists);
-
+        const lists = await getUserLists(user.userId);
+        setUserLists(lists);
       } catch (error) {
-        console.error("Error fetching lists:", error);
+        console.error("Error fetching user lists:", error);
       }
-    };
+    }
+  };
 
-    fetchMyLists();
-  }, [user]);
+  fetchUserLists();
+}, [user]);
 
   const handleListClick = (listId) => {
     navigate(`/my-lists/${listId}`);
