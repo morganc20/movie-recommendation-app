@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // For navigation
 import Header from "../components/Header";
 import "../styles/MyLists.css";
 import { getMyLists } from "../../api/app.js";
@@ -10,52 +10,33 @@ const MyLists = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMyLists = async () => {
-      if (!user || !user.userId) {
-        console.warn("User not logged in or userId missing");
-        return;
-      }
+  try {
+    data = await getRecommendedContent(50, "movie", category, false, 5);
+    setMyLists(data);
+    setLoading(false);
+  } catch (err) {
+    setError("Failed to load movies");
+    setLoading(false);
+  }
+};
 
+useEffect(() => {
+  const fetchUserLists = async () => {
+    if (user?.userId) {
       try {
-        const dummyLists = [
-          {
-            id: 1,
-            title: "Action Favorites",
-            genre: "Action",
-            director: "John Doe",
-            cast: "Cast A, Cast B",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 2,
-            title: "Romantic Hits",
-            genre: "Romance",
-            director: "Jane Doe",
-            cast: "Cast C, Cast D",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 3,
-            title: "Comedy Specials",
-            genre: "Comedy",
-            director: "Mike Comedy",
-            cast: "Cast E, Cast F",
-            movieImage: "https://via.placeholder.com/150",
-          },
-        ];
-        setMyLists(dummyLists);
-
+        const lists = await getUserLists(user.userId);
+        setUserLists(lists);
       } catch (error) {
-        console.error("Error fetching lists:", error);
+        console.error("Error fetching user lists:", error);
       }
-    };
+    }
+  };
 
-    fetchMyLists();
-  }, [user]);
+  fetchUserLists();
+}, [user]);
 
   const handleListClick = (listId) => {
-    navigate(`/list/${listId}`);
+    navigate(`/my-lists/${listId}`);
   };
 
   return (
@@ -67,11 +48,7 @@ const MyLists = () => {
         <div className="main-content">
           {myLists.length > 0 ? (
             myLists.map((list) => (
-              <div
-                key={list.id}
-                className="list-row"
-                onClick={() => handleListClick(list.id)}
-              >
+              <div key={list.id} className="list-row" onClick={() => handleListClick(list.id)}>
                 <img
                   src={list.movieImage}
                   alt={list.title}
@@ -79,9 +56,18 @@ const MyLists = () => {
                 />
                 <div className="list-details">
                   <h2 className="list-title">{list.title}</h2>
-                  <p><strong>Genre:</strong> {list.genre}</p>
-                  <p><strong>Director:</strong> {list.director}</p>
-                  <p><strong>Cast:</strong> {list.cast}</p>
+                  <p className="list-description">
+                    <span className="list-description-label">Description:</span> {list.description}
+                  </p>
+                  <button
+                    className="list-options-button"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent triggering navigation
+                      alert("Options menu coming soon!");
+                    }}
+                  >
+                    List Options ▼
+                  </button>
                 </div>
               </div>
             ))
