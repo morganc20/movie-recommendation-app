@@ -1,6 +1,7 @@
 '''
 This file contains the service functions for the list endpoints.
 '''
+import random
 from datetime import datetime
 from typing import Optional
 from fastapi import HTTPException
@@ -249,14 +250,33 @@ def delete_list_by_id(list_id: str):
     return {"message": "List deleted successfully"}
 
 
+list_photo_cache = {}
+
+
 def get_list_from_userid(user_id: str):
-    '''
-    Get all lists for a user by userId. also append the listId to each list.
-    '''
+    """
+    Get all lists for a user by userId. Append the listId and a consistent listPhoto to each list.
+    """
     list_docs = db.collection('lists').where('userId', '==', user_id).get()
     lists = []
+
+    content_docs = db.collection('content').get()
+    content_photos = [
+        doc.to_dict().get('photoUrl')
+        for doc in content_docs
+        if doc.to_dict().get('photoUrl') is not None
+    ]
+
     for doc in list_docs:
         list_data = doc.to_dict()
-        list_data['listId'] = doc.id
+        list_id = doc.id
+        list_data['listId'] = list_id
+
+        if list_id not in list_photo_cache:
+            list_photo_cache[list_id] = random.choice(
+                content_photos) if content_photos else "https://via.placeholder.com/150"
+
+        list_data['listPhoto'] = list_photo_cache[list_id]
         lists.append(list_data)
+
     return lists

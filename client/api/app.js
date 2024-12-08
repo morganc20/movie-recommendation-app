@@ -181,7 +181,7 @@ export const getAllLists = async () => {
 
 export const getMyLists = async (userId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/lists/${userId}`);
+    const response = await axios.get(`${BASE_URL}/lists/${userId}/all`);
     return response.data;
   } catch (error) {
     console.error("Error fetching user lists:", error);

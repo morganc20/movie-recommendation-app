@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/MyLists.css";
-import { getMyLists } from "../../api/app.js";
+import { getMyLists, deleteList } from "../../api/app.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const MyLists = () => {
@@ -18,31 +18,8 @@ const MyLists = () => {
       }
 
       try {
-        const dummyLists = [
-          {
-            id: 1,
-            title: "90's Babies' Nostalgia Trip",
-            description:
-              "I love rewatching all the shows I used to watch as a kid! Add any shows you think I missed that fit the vibe! :)",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 2,
-            title: "Romantic Evenings",
-            description:
-              "A curated list of my favorite romantic movies to watch on special nights!",
-            movieImage: "https://via.placeholder.com/150",
-          },
-          {
-            id: 3,
-            title: "Action-Packed Adventures",
-            description:
-              "For adrenaline junkies and action enthusiasts, this is the ultimate list of thrill rides.",
-            movieImage: "https://via.placeholder.com/150",
-          },
-        ];
-        setMyLists(dummyLists);
-
+        const lists = await getMyLists(user.userId);
+        setMyLists(lists);
       } catch (error) {
         console.error("Error fetching lists:", error);
       }
@@ -51,8 +28,15 @@ const MyLists = () => {
     fetchMyLists();
   }, [user]);
 
-  const handleListClick = (listId) => {
-    navigate(`/my-lists/${listId}`);
+  const handleDelete = async (listId) => {
+    try {
+      await deleteList(listId);
+      setMyLists((prevLists) =>
+        prevLists.filter((list) => list.listId !== listId)
+      );
+    } catch (error) {
+      console.error("Error deleting list:", error);
+    }
   };
 
   return (
@@ -64,25 +48,26 @@ const MyLists = () => {
         <div className="main-content">
           {myLists.length > 0 ? (
             myLists.map((list) => (
-              <div key={list.id} className="list-row" onClick={() => handleListClick(list.id)}>
+              <div key={list.listId} className="list-row">
                 <img
-                  src={list.movieImage}
-                  alt={list.title}
+                  src={list.listPhoto}
+                  alt={list.name}
                   className="list-image"
                 />
                 <div className="list-details">
-                  <h2 className="list-title">{list.title}</h2>
+                  <h2 className="list-title">{list.name}</h2>
                   <p className="list-description">
-                    <span className="list-description-label">Description:</span> {list.description}
+                    <span className="list-description-label">Description:</span>{" "}
+                    {list.description}
                   </p>
                   <button
                     className="list-options-button"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent triggering navigation
-                      alert("Options menu coming soon!");
+                      e.stopPropagation();
+                      handleDelete(list.listId);
                     }}
                   >
-                    List Options ▼
+                    Delete List
                   </button>
                 </div>
               </div>
