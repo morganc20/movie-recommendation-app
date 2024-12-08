@@ -4,22 +4,19 @@ import SearchBar from "../components/SearchBar";
 import TopListsCarousel from "../components/TopListsCarousel";
 import TitleDisplay from "../components/TitleDisplay";
 import "../styles/MyLists.css";
-import { getMyLists } from "../../api/mock.js";
+import { getMyLists, getAllUsers } from "../../api/mock.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const MyLists = () => {
   const [myLists, setMyLists] = useState([]);
-  const { user } = useAuth();
 
   useEffect(() => {
     const fetchMyLists = async () => {
-      if (!user || !user.userId) {
-        console.warn("User not logged in or userId missing");
-        return;
-      }
-
       try {
+        const users = await getAllUsers();
+        const user = users[0];
         const fetchedMyLists = await getMyLists(user.userId);
+        console.log(fetchedMyLists);
         setMyLists(fetchedMyLists || []);
       } catch (error) {
         console.error("Error fetching lists:", error);
@@ -27,7 +24,7 @@ const MyLists = () => {
     };
 
     fetchMyLists();
-  }, [user]);
+  }, []);
 
   return (
     <div className="forum">
@@ -43,10 +40,12 @@ const MyLists = () => {
                 <TitleDisplay
                   key={list.id}
                   title={list.title}
+                  movies={list.content}
                   genre={list.genre}
                   director={list.director}
                   cast={list.cast}
                   movieImage={list.movieImage}
+                  contentID={list.content[0].contentID}
                 />
               ))}
             </div>

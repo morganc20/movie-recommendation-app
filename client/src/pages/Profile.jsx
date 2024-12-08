@@ -3,11 +3,11 @@ import Header from "../components/Header";
 import "../styles/Profile.css";
 import ProfilePhoto from "../assets/profile.svg";
 import { useAuth } from "../context/AuthContext";
-import { getUserDetails } from "../../api/mock.js";
+import { getUserDetails, getAllUsers } from "../../api/mock.js";
 import { updateProfile } from "../../api/app.js";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
+  const user = useState(null);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,7 +18,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       if (!user) return;
-      const userDetails = await getUserDetails(user.userId);
+      const users = await getAllUsers();
+      const userDetails = users[0];
+      console.log(userDetails);
       if (userDetails) {
         setEmail(userDetails.email);
         setFirstName(userDetails.firstName);

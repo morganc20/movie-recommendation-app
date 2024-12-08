@@ -1,3 +1,8 @@
+// The code in this file was purely made as a way to record demo videos
+// without accessing Firebase as the number of read operations got exceeded
+// To save time, ChatGPT generated a lot of these JSON objects for the dummy data
+// and these object were then later edited to match the current implemented schema.
+
 export const getAllContent = async () => {
     const contentData = {
         "contentId": "cont12345",
@@ -62,6 +67,8 @@ export const getAllUsers = async() => {
         {
           "userId": "u1000",
           "username": "user1",
+          "firstName": "john",
+          "lastName": "doe",
           "email": "user1@example.com",
           "passwordHash": "bac03d7c69146d3714e15230952a99fc2c40e19716c1e2a9b62e4e4453fdb12d", //StrongPassword1
           "salt": "e492aa0955614bdec1b6b7c4d1ec47fd"
@@ -69,6 +76,8 @@ export const getAllUsers = async() => {
         {
           "userId": "u1001",
           "username": "user2",
+          "firstName": "jon",
+          "lastName": "doe",
           "email": "user2@example.com",
           "passwordHash": "571885aaa57aa7129570b727543b02822ab8ccf248806eb67802df84d704731f", //MySecretPass2
           "salt": "4479813d4f151c7c6e08c73874ddf78a"
@@ -76,6 +85,8 @@ export const getAllUsers = async() => {
         {
           "userId": "u1002",
           "username": "user3",
+          "firstName": "alex",
+          "lastName": "doe",
           "email": "user3@example.com",
           "passwordHash": "a90a5f6bc90217abf02282dcc1d0641b1f06e3786394ffb3cbe1da39a6a21372", //UltraSecureKey3
           "salt": "e5a70c37c4c2d7d8ce3191b0f7e0e650"
@@ -209,7 +220,7 @@ export const getUserLists = async (userId) => {
         content: [
           { contentId: "cont12345", addedAt: "2024-12-01T11:00:00Z" },
         ],
-        images: [],
+        movieImage: "https://filmfisher.com/wp-content/uploads/2014/03/inception_ver12_xlg-600x885.jpg"
       },
     ];
     return mockLists.filter((list) => list.userId === userId);

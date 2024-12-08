@@ -77,9 +77,7 @@ function App() {
           <Route
             path="/my-lists"
             element={
-              <PrivateRoute>
                 <MyLists />
-              </PrivateRoute>
             }
           />
           {/* <Route
@@ -114,9 +112,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <AdminRoute>
                 <Admin />
-              </AdminRoute>
             }
           />
         </Routes>

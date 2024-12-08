@@ -80,7 +80,7 @@ const Forum = () => {
   return (
     <div className="forum">
       <Header />
-      {/* <div className="forum-content">
+      <div className="forum-content">
         <h1 className="forum-title">Forum</h1>
         <SearchBar />
         <TopListsCarousel />
@@ -104,7 +104,7 @@ const Forum = () => {
             />
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
