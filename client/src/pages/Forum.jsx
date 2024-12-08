@@ -1,110 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
 import TopListsCarousel from "../components/TopListsCarousel";
-import SortSidebar from "../components/SortSidebar";
-import MovieList from "../components/MovieList";
-import Tabs from "../components/Tabs";
 import "../styles/Forum.css";
 
-import JawsThumbnail from "../assets/test.jpg";
-import CaptainPhillipsThumbnail from "../assets/test.jpg";
-import AdriftThumbnail from "../assets/test.jpg";
-import ThrillerNightThumbnail from "../assets/test.jpg";
-import { getRecommendedContent } from "../../api/app";
-
 const Forum = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Recommended");
-  const [recommendedMovies, setRecommendedMovies] = useState([]);
-
-  useEffect(() => {
-    const fetchRecommendedMovies = async () => {
-      const movies = await getRecommendedContent(100);
-      const formattedMovies = movies.map((movie) => ({
-        id: movie.contentId,
-        title: movie.title,
-        genre: movie.genre,
-        thumbnail: "", // Placeholder for thumbnail
-      }));
-      setRecommendedMovies(formattedMovies);
-    };
-
-    fetchRecommendedMovies();
-  }, []); // Fetch once when the component mounts
-
-  // const recommendedMovies = [
-  //   {
-  //     id: 1,
-  //     title: "Jaws",
-  //     genre: "Thriller",
-  //     thumbnail: JawsThumbnail,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Captain Phillips",
-  //     genre: "Adventure",
-  //     thumbnail: CaptainPhillipsThumbnail,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Adrift",
-  //     genre: "Drama",
-  //     thumbnail: AdriftThumbnail,
-  //   },
-  // ];
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
-
-  console.log(recommendedMovies);
   const categories = [
-    "Recommended",
-    "Weekly 100",
-    "Comedy",
-    "Action",
-    "Romantic",
-    "Thriller",
-    "More",
-  ];
-
-  const weeklyMovies = [
-    {
-      id: 4,
-      title: "Thriller Night",
-      genre: "Thriller",
-      thumbnail: ThrillerNightThumbnail,
-    },
+    { title: "Top Picks for Movie Marathons", type: "movie" },
+    { title: "Feel-Good Favorites", type: "movie" },
+    { title: "Critically Acclaimed Classics", type: "movie" },
+    { title: "Hidden Gems You Need to See", type: "movie" },
+    { title: "Epic Sci-Fi Adventures", type: "movie" },
+    { title: "Laugh-Out-Loud Comedy Lists", type: "movie" },
+    { title: "Heart-Pounding Thrillers", type: "movie" },
+    { title: "Animated Magic for All Ages", type: "movie" },
   ];
 
   return (
     <div className="forum">
       <Header />
-      {/* <div className="forum-content">
-        <h1 className="forum-title">Forum</h1>
-        <SearchBar />
-        <TopListsCarousel />
-        <Tabs categories={categories} onSelectCategory={handleCategorySelect} />
+      <div className="forum-content">
+        <h2 className="forum-title">Explore Curated Lists</h2>
         <div className="main-content">
-          <SortSidebar />
-          <div className="movie-lists">
-            <MovieList
-              listTitle="Best Boat Movies"
-              user="user39450"
-              genre="Action Adventure"
-              listSummary="Jaws, Captain Phillips, Adrift..."
-              movies={recommendedMovies}
+          {categories.map((category, index) => (
+            <TopListsCarousel
+              key={index}
+              title={category.title}
+              type={category.type}
+              shuffle={true}
             />
-            <MovieList
-              listTitle="Weekly Highlights"
-              user="user85732"
-              genre="Thriller"
-              listSummary="Thriller Night..."
-              movies={weeklyMovies}
-            />
-          </div>
+          ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

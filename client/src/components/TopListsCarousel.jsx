@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/TopListsCarousel.css";
 import { getRecommendedContent } from "../../api/app.js";
 
-const TopListsCarousel = ({ title, type }) => {
+const TopListsCarousel = ({ title, type, shuffle = null }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,6 +20,9 @@ const TopListsCarousel = ({ title, type }) => {
           false,
           8.5
         );
+        if (shuffle) {
+          data.sort(() => Math.random() - 0.5);
+        }
         console.log("Data:", data);
         if (type === "both") {
           const data = await getRecommendedContent(
