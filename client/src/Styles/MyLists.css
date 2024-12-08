@@ -38,7 +38,7 @@
 
 .list-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   background-color: #1e1e3a;
   border-radius: 8px;
   padding: 15px;
@@ -47,7 +47,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  text-decoration: none;
 }
 
 .list-row:hover {
@@ -60,11 +59,13 @@
   height: 120px;
   border-radius: 5px;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .list-details {
   flex-grow: 1;
   text-align: left;
+  position: relative;
 }
 
 .list-title {
@@ -72,7 +73,34 @@
   margin-bottom: 8px;
   color: #F1DAC4;
   font-family: 'Georgia', serif;
-  text-align: left;
+}
+
+.list-description {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #f5f5f5;
+  display: flex;
+  gap: 5px;
+}
+
+.list-description-label {
+  font-weight: bold;
+}
+
+.list-options-button {
+  background-color: #f5f5f5;
+  color: #1e1e3a;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.list-options-button:hover {
+  background-color: #ddd;
 }
 
 .no-lists-message {

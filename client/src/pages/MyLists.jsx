@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // For navigation
 import Header from "../components/Header";
 import "../styles/MyLists.css";
 import { getMyLists } from "../../api/app.js";
@@ -21,26 +21,23 @@ const MyLists = () => {
         const dummyLists = [
           {
             id: 1,
-            title: "Action Favorites",
-            genre: "Action",
-            director: "John Doe",
-            cast: "Cast A, Cast B",
+            title: "90's Babies' Nostalgia Trip",
+            description:
+              "I love rewatching all the shows I used to watch as a kid! Add any shows you think I missed that fit the vibe! :)",
             movieImage: "https://via.placeholder.com/150",
           },
           {
             id: 2,
-            title: "Romantic Hits",
-            genre: "Romance",
-            director: "Jane Doe",
-            cast: "Cast C, Cast D",
+            title: "Romantic Evenings",
+            description:
+              "A curated list of my favorite romantic movies to watch on special nights!",
             movieImage: "https://via.placeholder.com/150",
           },
           {
             id: 3,
-            title: "Comedy Specials",
-            genre: "Comedy",
-            director: "Mike Comedy",
-            cast: "Cast E, Cast F",
+            title: "Action-Packed Adventures",
+            description:
+              "For adrenaline junkies and action enthusiasts, this is the ultimate list of thrill rides.",
             movieImage: "https://via.placeholder.com/150",
           },
         ];
@@ -55,7 +52,7 @@ const MyLists = () => {
   }, [user]);
 
   const handleListClick = (listId) => {
-    navigate(`/list/${listId}`);
+    navigate(`/my-lists/${listId}`);
   };
 
   return (
@@ -67,11 +64,7 @@ const MyLists = () => {
         <div className="main-content">
           {myLists.length > 0 ? (
             myLists.map((list) => (
-              <div
-                key={list.id}
-                className="list-row"
-                onClick={() => handleListClick(list.id)}
-              >
+              <div key={list.id} className="list-row" onClick={() => handleListClick(list.id)}>
                 <img
                   src={list.movieImage}
                   alt={list.title}
@@ -79,9 +72,18 @@ const MyLists = () => {
                 />
                 <div className="list-details">
                   <h2 className="list-title">{list.title}</h2>
-                  <p><strong>Genre:</strong> {list.genre}</p>
-                  <p><strong>Director:</strong> {list.director}</p>
-                  <p><strong>Cast:</strong> {list.cast}</p>
+                  <p className="list-description">
+                    <span className="list-description-label">Description:</span> {list.description}
+                  </p>
+                  <button
+                    className="list-options-button"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent triggering navigation
+                      alert("Options menu coming soon!");
+                    }}
+                  >
+                    List Options ▼
+                  </button>
                 </div>
               </div>
             ))
