@@ -1,0 +1,5 @@
+Shamis Ali
+- Used AI Tools:
+    - Anima: Plugin in Figma used to convert screens into code for React
+    - ChatGPT: Used to understand styling bugs and other general UI bugs
+    - ChatGPT: In the branch /fixes, used in the file called mock.js (explained more in the file)
